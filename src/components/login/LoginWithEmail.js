@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
-export default function LoginForm({ onLogin }) {
+export default function LoginForm() {
+    const router = useRouter();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [feedback, setFeedback] = useState('');
@@ -12,13 +15,31 @@ export default function LoginForm({ onLogin }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const success = onLogin(email, password);
+        const success = toggleClickSignIn(email, password);
         if (success) {
             setIsLoginFailed(false);
         } else {
             setIsLoginFailed(true);
             setFeedback("Email and password you entered is incorrect, Please try again.");
         }
+    };
+
+    const toggleClickSignIn = async (emailInput, passwordInput) => {
+    try {
+      const res = await api.post('https://172.16.8.124:8080/api/login', {
+        email: emailInput,
+        password: passwordInput
+      });
+
+      const { access_token, refresh_token } = res.data;
+
+      localStorage.setItem('access_token', access_token);
+      localStorage.setItem('refresh_token', refresh_token);
+
+      router.push('/');
+    } catch (err) {
+      console.log('Login error:', err);
+    }
     };
 
     const toggleClickForgotPassword = () => {

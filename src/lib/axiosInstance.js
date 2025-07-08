@@ -27,10 +27,9 @@ api.interceptors.response.use(
         const res = await axios.post('/api/token', {
           refresh_token: refresh_token
         });
-        const { access_token, id_token } = res.data;
+        const { access_token } = res.data;
 
         localStorage.setItem('access_token', access_token);
-        localStorage.setItem('id_token', id_token);
 
         originalRequest.headers['Authorization'] = `Bearer ${access_token}`;
         return api(originalRequest);
@@ -40,7 +39,6 @@ api.interceptors.response.use(
         console.log("Refresh token expired - redirecting to login");
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
-        localStorage.removeItem('id_token');
         window.location.href = '/login';
 
         return Promise.reject(refreshError);
