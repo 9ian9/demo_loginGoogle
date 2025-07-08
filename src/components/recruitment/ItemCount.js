@@ -1,0 +1,24 @@
+'use client'
+import { useState,useEffect } from "react"
+import api from "@/lib/axiosInstance"
+
+export default function ItemCount({endpoint}){
+    const [count, setCount] = useState(null)
+    const [error,setError] = useState(null)
+    useEffect( ()=>{
+        const fetchData = async () =>{
+            try{
+                const response =await api.get(endpoint);
+                setCount(response.data.count);
+            }
+            catch (error){
+                setError(error.message);
+            }
+        }
+        fetchData();
+    },[endpoint]);
+    if (count === null) return <p>Loading...</p>
+    return (
+        <p>{count}</p>
+    )
+}

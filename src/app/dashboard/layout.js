@@ -2,7 +2,7 @@ import SideBar from "@/components/SideBar";
 function DashboardLayout({ children }){
     return(
         <div className="flex">
-            <SideBar />
+            <SideBar/>
             <div className="flex-1">
                 {children}
             </div>
