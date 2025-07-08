@@ -31,13 +31,13 @@ export default function GoogleCallbackPage() {
 
         console.log('Backend response:', data);
 
-        // if (data.success) {
-        //   await saveToken();
-        //   router.push('/home');
-        // } 
-        // else {
-        //   router.push('/login');
-        // }
+        if (data.success) {
+          await saveToken();
+          router.push('/home');
+        } 
+        else {
+          router.push('/login');
+        }
         
       } 
       catch (err) {
@@ -56,25 +56,25 @@ export default function GoogleCallbackPage() {
   );
 }
 
-// async function saveToken() {
-//   try {
-//     const response = await fetch('/api', {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     });
+async function saveToken() {
+  try {
+    const response = await fetch('/api', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       throw new Error(errorData.message || 'Failed to fetch token.');
-//     }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to fetch token.');
+    }
 
-//     const data = await response.json();
+    const data = await response.json();
 
-//     localStorage.setItem('access_token', data.access_token);
-//     localStorage.setItem('refresh_token', data.refresh_token);
-//   } catch (err) {
-//     console.error('Token fetch error:', err.message);
-//   }
-// }
+    localStorage.setItem('access_token', data.access_token);
+    localStorage.setItem('refresh_token', data.refresh_token);
+  } catch (err) {
+    console.error('Token fetch error:', err.message);
+  }
+}

@@ -4,7 +4,7 @@ import { useEffect,useState } from 'react';
 import api from '@/lib/axiosInstance'; 
 export default function Card(){
     return (
-        <div className="flex gap-4">
+        <div className="flex gap-4 mx-[32px]">
             <CardItem
                 title="All Candidates"
                 href="/dashboard/recruitment/candidate"

@@ -1,5 +1,5 @@
 'use client';
-export default function LoginWithGoogle(error) {
+export default function LoginWithGoogle() {
 
   function getAuthUrl() {
     const GOOGLE_CLIENT_ID = '21121965423-th11s8dp0dk0g8592fsuh1nmt3okd9ji.apps.googleusercontent.com';
