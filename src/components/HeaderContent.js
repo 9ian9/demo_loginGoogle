@@ -4,9 +4,9 @@ import { usePathname,useRouter } from "next/navigation"
 export default function HeaderContent({title,description}) {
     return (
     <>
-        <div className="pt-[16px] pb-[16px] border-b border-b-[#E5E7EB] ">
+        <div className="pt-[16px] pb-[16px] border-b border-b-[#E5E7EB] pl-[32px]">
             <p className="text-3xl leading-10 font-bold pb-[8px]">{title}</p>
-            <p className="text-xs text-[#475467]">{description}</p>
+            <p className="text-sm text-[#475467]">{description}</p>
         </div>
     </>
   );
@@ -28,8 +28,12 @@ export function BreakCrumbs (){
         }
     }
     return (
-        <>
+        <div className="flex items-center gap-[4px] pl-[32px]">
+            <svg width="14" height="14" viewBox="0 0 32 32" color="#374151" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.7073 25.2925C20.8002 25.3854 20.8739 25.4957 20.9242 25.6171C20.9745 25.7385 21.0004 25.8686 21.0004 26C21.0004 26.1314 20.9745 26.2615 20.9242 26.3829C20.8739 26.5043 20.8002 26.6146 20.7073 26.7075C20.6144 26.8004 20.5041 26.8741 20.3827 26.9244C20.2613 26.9747 20.1312 27.0006 19.9998 27.0006C19.8684 27.0006 19.7383 26.9747 19.6169 26.9244C19.4955 26.8741 19.3852 26.8004 19.2923 26.7075L9.29231 16.7075C9.19933 16.6146 9.12557 16.5043 9.07525 16.3829C9.02493 16.2615 8.99902 16.1314 8.99902 16C8.99902 15.8686 9.02493 15.7385 9.07525 15.6171C9.12557 15.4957 9.19933 15.3854 9.29231 15.2925L19.2923 5.29251C19.4799 5.10487 19.7344 4.99945 19.9998 4.99945C20.2652 4.99945 20.5197 5.10487 20.7073 5.29251C20.895 5.48015 21.0004 5.73464 21.0004 6.00001C21.0004 6.26537 20.895 6.51987 20.7073 6.70751L11.4136 16L20.7073 25.2925Z" fill="#374151"/>
+            </svg>
+
             <button onClick={handleClick} className="breadcrumbs text-sm text-[#374151]" >Back</button>
-        </>
+        </div>
     )
 }
