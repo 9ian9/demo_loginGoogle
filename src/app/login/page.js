@@ -15,9 +15,20 @@ function Login() {
       const refreshToken = localStorage.getItem('refresh_token');
 
       if (token){
-        router.push('/home');      }
+        try{
+          const res = api.post('api/ktra_accesstoken', {access_token: token});
+        
+          if(res.data.valid){
+            router.push('/dashboard');
+          } else {
+            throw new Error("Access_token invalid");
+          }
+        } catch(err){
+          console.warn("Token invalid or expired:", err);
+        }
+      }
 
-      if (!token && refreshToken) {
+      if (refreshToken) {
         try {
           const res = await api.post('/api/token', {
             refresh_token: refreshToken
@@ -25,12 +36,21 @@ function Login() {
 
           const { access_token } = res.data;
           localStorage.setItem('access_token', access_token);
+          router.push('/dashboard');
+
         } catch (err) {
           console.log('Unable to refresh token:', err);
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
-          window.location.href = '/login';
-        }
+          if (window.location.pathname !== '/login') {
+            window.location.href = '/login';
+          }
+
+                  }
+                } else {
+                  if (window.location.pathname !== '/login') {
+            window.location.href = '/login';
+          }
       }
     };
 
