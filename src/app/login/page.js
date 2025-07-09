@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter,useSearchParams} from 'next/navigation';
+import { useRouter,useSearchParams, redirect } from 'next/navigation';
 import api from '@/lib/axiosInstance';
 import LoginWithEmail from '@/components/login/LoginWithEmail.js';
 import LoginWithGoogle from '@/components/login/LoginWithGoogle';
@@ -52,7 +52,6 @@ function Login() {
                     <div className="flex flex-col gap-4">
                         <LoginWithEmail />
                         <div className="divider h-5 m-0 text-xs">or</div>
-
                         <LoginWithGoogle/>
                     </div>
                 </div>
