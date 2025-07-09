@@ -1,7 +1,5 @@
 'use client'
 import Link from 'next/link';
-import { useEffect,useState } from 'react';
-import api from '@/lib/axiosInstance'; 
 import ItemCount from './ItemCount';
 
 export default function Card(){
@@ -27,7 +25,7 @@ function CardItem({title,quantity,href}){
         <div className="border border-[#E5E7EB] shadow-xs rounded-xl w-full px-[24px] py-[16px]">
             <h2 className="text-base font-bold mb-[8px]">{title}</h2>
             <div className='flex justify-between items-end  '>
-                <div className="text-3xl leading-10 font-bold">
+                <div className="text-2xl leading-10 font-bold">
                     {quantity}
                 </div>
                 <Link href={href} className='text-[#0C376C]'>View All</Link>

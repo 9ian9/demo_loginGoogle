@@ -11,15 +11,12 @@ export default function dashboard(){
             <div>
                 <div className="flex gap-4 items-center ml-[32px]">
                     <p className="text-2xl font-bold">All position</p>
-                    <div className="badge badge-md border-[#374151] float-left">
+                    <div className="badge badge-md border-[#374151]">
                         <ItemCount endpoint={"api/positions"}/> items
                     </div>
                 </div>
-                <p className="ml-[32px] text-[#374151] text-xs">Manage your position and job description here.</p>
+                <p className="ml-[32px] mt-1 text-[#374151] text-xs">Manage your position and job description here.</p>
             </div>
-             
-
-
         </div>
-    )
+    );
 }

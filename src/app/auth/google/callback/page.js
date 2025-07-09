@@ -14,35 +14,30 @@ export default function GoogleCallbackPage() {
     
     const exchangeCode = async () => {
       try {
-        const response = await fetch('http://172.16.8.126:8080/api/v1/auth/google', {
+        const response = await fetch('http://172.16.8.126:8088/auth/google', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ code }),
-          credentials: 'include',
         });
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `Backend error: ${response.status}`);
+      }
+
         const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Backend returned an error.');
-        }
-
         console.log('Backend response:', data);
 
-        if (data.success) {
-          await saveToken();
-          router.push('/home');
-        } 
-        else {
-          router.push('/login');
-        }
-        
+        localStorage.setItem('access_token', data.accesstoken);
+        localStorage.setItem('refresh_token', data.refreshtoken);
+        router.push("/dashboard/recruitment")
       } 
       catch (err) {
         console.error('OAuth2 exchange error:', err.message);
         setError(err.message);
+        router.push("/login")
       }
     };
 
@@ -56,25 +51,3 @@ export default function GoogleCallbackPage() {
   );
 }
 
-async function saveToken() {
-  try {
-    const response = await fetch('/api', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to fetch token.');
-    }
-
-    const data = await response.json();
-
-    localStorage.setItem('access_token', data.access_token);
-    localStorage.setItem('refresh_token', data.refresh_token);
-  } catch (err) {
-    console.error('Token fetch error:', err.message);
-  }
-}
