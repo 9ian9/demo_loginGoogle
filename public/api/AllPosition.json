@@ -1,0 +1,8 @@
+[
+    { "namePosition": "Backend Developer", "numberOfPositions" : "2", "numberOfApplicants": "5", "level": "Middle", "location": "NZ", "deadline": "06/15/2023", "status": "Open" },
+    { "namePosition": "UI/UX Designe", "numberOfPositions":" 1", "numberOfApplicants": "1", "level": "Junior", "location": "US", "deadline": "06/15/2023", "status": "Open" },
+    { "namePosition": "Full Stack Developer", "numberOfPositions": "2","numberOfApplicants": "5", "level": "Senior", "location": "VN", "deadline": "06/30/2023", "status": "Open" },
+    { "namePosition": "Data Scientist", "numberOfPositions": "4", "numberOfApplicants": "4", "level": "Lead", "location":"VN", "deadline": "06/01/2023", "status": "Closed" },
+    { "namePosition": "DevOps Engineer", "numberOfPositions": "2", "numberOfApplicants": "8", "level": "Intern", "location": "VN", "deadline": "06/15/2023", "status": "Open" },
+    { "namePosition": "Frontend Developer", "numberOfPositions": "2", "numberOfApplicants": "8", "level": "Intern", "location": "VN", "deadline": "06/15/2023", "status": "Open" }
+]
