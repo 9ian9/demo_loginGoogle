@@ -11,6 +11,7 @@ export default function LoginForm() {
     const [password, setPassword] = useState('');
     const [feedback, setFeedback] = useState('');
     const [isLoginFailed, setIsLoginFailed] = useState(false);
+
     const classLoginDefault = "input border-1 focus-within:ring-1 focus-within:border-none focus-within:outline-none focus-within:shadow-none input w-100 h-12 py-3.5 px-4 rounded-[8]";
     const classLogin = `${classLoginDefault} ${isLoginFailed ? 'border-red-500 focus-within:ring-red-500' : 'focus-within:ring-gray-300'}`;
 
@@ -27,23 +28,20 @@ export default function LoginForm() {
 
 const toggleClickSignIn = async (emailInput, passwordInput) => {
     try {
-        console.log("Da vao day1");
+
         const res = await api.post('http://172.16.8.126:8088/auth/token', {
             username: emailInput,
             password: passwordInput
         });
-        console.log("Da vao day");
 
         const { accessToken, refreshToken } = res.data;
-        localStorage.setItem('access_token', accessToken);
-        localStorage.setItem('refresh_token', refreshToken);
-        console.log("access_token: ", accessToken);
-        console.log("refresh_token: ", refreshToken);
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
         
-        setTimeout(() => {
-            router.push('/');
-        }, 10000);
-        // router.push('/');
+        console.log("accessToken: ", accessToken);
+        console.log("refreshToken: ", refreshToken);
+        
+        router.push('/dashboard');
         return true;
     } catch (err) {
         console.log('Login error:', err);
@@ -51,9 +49,8 @@ const toggleClickSignIn = async (emailInput, passwordInput) => {
     }
 };
 
-
     const toggleClickForgotPassword = () => {
-        alert("Ban da nhan quen mat khau");
+        alert("You have forgotten the password");
     }
 
     return (
