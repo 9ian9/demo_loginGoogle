@@ -8,12 +8,12 @@ export default function Card(){
             <CardItem
                 title="All Candidates"
                 href="/dashboard/recruitment/candidate"
-                quantity={<ItemCount endpoint="api/candidate" />}
+                quantity={<ItemCount category={"totalCandidates"} />}
             />
             <CardItem
                 title="Interview"
                 href="/dashboard/recruitment/interview"
-                quantity={<ItemCount endpoint="api/interview"/>}
+                quantity={<ItemCount category={"totalInterviews"}/>}
             />
         </div>
     )

@@ -43,7 +43,7 @@ export default function CandidatePage() {
             <HeaderContent title={title} description={description}></HeaderContent>
             
             <div className="absolute top-6 left-60 badge badge-md border-[#374151]">
-                <ItemCount endpoint="api/candidate" /> item
+                <ItemCount category={"totalCandidates"} /> item
             </div>
         </div>
         <div className="FilterBar flex justify-between mx-[32px] ">

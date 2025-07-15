@@ -13,14 +13,12 @@ import { all } from "axios";
 
 export default function Dashboard(){
 
-    const title ="Recruitment";
-    const description ="Track, manage and forecast your recruitment and candidate";
     const router = useRouter();   
     const [allPosition,setAllPositions] = useState([]);
     const [filters,setFilters]=useState({});
 
     const hanldCreateFormButton = () => {
-        router.push('/dashboard/recruitment/createform');
+        router.push('/createform');
     }
 
      useEffect(() =>{
@@ -45,7 +43,10 @@ export default function Dashboard(){
     
     return (
         <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
-            <HeaderContent title={title} description={description} />
+            <HeaderContent 
+                title ="Recruitment"
+                description ="Track, manage and forecast your recruitment and candidate"
+            />
 
             <Card/>
 
@@ -55,7 +56,7 @@ export default function Dashboard(){
                         <p className="text-2xl font-bold">All position</p>
 
                         <div className="badge badge-md border-[#374151] float-left">
-                            <ItemCount endpoint={"api/positions"}/> items
+                            <ItemCount category={"totalPositions"}/> items
                         </div>
                     </div>
                     <p className="text-[#374151] text-xs">Manage your position and job description here.</p>
