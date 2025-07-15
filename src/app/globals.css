@@ -33,3 +33,10 @@ body {
 .custom-table .ant-table-content table {
   table-layout: auto !important;
 }
+
+.custom-table .ant-table-cell {
+  padding: 8px 10px !important;
+}
+.custom-table .ant-table-content table {
+  table-layout: auto !important;
+}

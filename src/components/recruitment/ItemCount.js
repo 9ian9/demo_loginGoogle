@@ -17,7 +17,14 @@ export default function ItemCount({endpoint}){
         }
         fetchData();
     },[endpoint]);
-    if (count === null) return <p>Loading...</p>
+    if (count === null) 
+        return (
+            <>
+                <div className="flex justify-center items-center space-x-2 h-full">
+                    0
+                </div>
+            </>
+        )
     return (
         <p>{count}</p>
     )
