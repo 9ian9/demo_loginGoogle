@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
 import ItemCount from "@/components/recruitment/ItemCount";
-import TableAllPosition from "@/components/recruitment/TableAllPosition";
+import TableAllCadidates from '@/components/candidates/TableAllCandidates';
 import Filters from '@/components/filterBar/Filters';
-import SearchInput from '@/components/filterBar/SearchInput';
+// import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
 
 export default function CandidatePage() {
@@ -35,9 +35,8 @@ export default function CandidatePage() {
     {key:"level",label:"Level"},            
   ]
 
-
   return (
-    <div className="flex flex-col gap-4 h-full mt-4">
+    <div className="flex flex-col gap-4 h-screen mt-4">
         <BreakCrumbs />
         <div className="relative">
             <HeaderContent title={title} description={description}></HeaderContent>
@@ -47,12 +46,12 @@ export default function CandidatePage() {
             </div>
         </div>
         <div className="FilterBar flex justify-between mx-[32px] ">
-            <SearchInput onChange={(value) => setSearch(value)} />
+            {/* <SearchInput onChange={(value) => setSearch(value)} /> */}
             
             <Filters allPosition={allCandidate} keyValue={keySelect} filter={setFilters} />
         </div> 
-        <div className="mx-[32px] mt-[24px]">
-            <TableAllPosition Data={allCandidate} />
+        <div className="mx-[32px] mt-[16px] flex-grow">
+            <TableAllCadidates Data={allCandidate} />
         </div>
     </div>
   );

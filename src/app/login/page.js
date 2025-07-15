@@ -19,11 +19,7 @@ function Login() {
       const refreshToken = localStorage.getItem('refreshToken');
 
       if (token) {
-<<<<<<< HEAD
         router.push('/dashboard/recruitment');
-=======
-        router.push('/dashboard');
->>>>>>> 2f1ab89341243e07f53b52b091762b71ea1f8357
         return;
       }
 

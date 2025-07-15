@@ -36,7 +36,7 @@ function TableAllPosition({Data}){
 
   const dynamicColumns = allPositions[0]
   ? Object.keys(allPositions[0])
-  .filter((key) => key !== 'index')
+  .filter((key) => key !== 'index' && key !== 'id')
   .map((key) => {
       let column = {
         title: convertKeyToTitle(key),

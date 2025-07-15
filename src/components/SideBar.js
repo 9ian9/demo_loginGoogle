@@ -13,9 +13,17 @@ function SideBar() {
   const [position, setPosition] = useState('');
   const ImageLogo ='/logohome.png'
   useEffect(() => {
-    setImageUser('https://photo.znews.vn/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg');
-    setUsername('Thuy Tien');
-    setPosition('Nhan vien');
+    const fetchDataUser = async() =>{
+      try{
+        const res = await api.get('user/getInfo');
+        const data = res.data.result;
+        setUsername(data.name);
+        setPosition(data.jobTitle);
+      } catch(err){
+
+      }
+    }
+    fetchDataUser();
   }, []);
 
   const navItems = [
@@ -106,7 +114,7 @@ function SideBar() {
         </Link>
         <div className="flex pl-2 pr-8 pt-6 gap-4 border-t-1 border-[#E3E8EF]">
           <img
-            src={imageUser || '/default-avatar.png'}
+            src={imageUser || 'https://photo.znews.vn/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg'}
             className="w-8 h-8 rounded-full"
           />
           <div className="flex flex-col justify-center">
