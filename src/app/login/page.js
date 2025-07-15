@@ -25,8 +25,9 @@ function Login() {
 
       if (refreshToken) {
         try {
-          const res = await api.post('http://172.16.8.126:8088/auth/refresh', { token: refreshToken });
-          const { accessToken, refreshToken: newRefresh } = res.data;
+          const res = await api.post('http://172.16.8.126:8088/auth/refresh',
+            { refreshToken: refreshToken });
+          const { accessToken, refreshToken: newRefresh } = res.data.result;
 
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', newRefresh);

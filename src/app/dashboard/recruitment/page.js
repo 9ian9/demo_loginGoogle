@@ -3,12 +3,6 @@
 
 import HeaderContent from "@/components/HeaderContent";
 import Card from "@/components/recruitment/Card";
-import StatusSelect from "@/components/filterBar/StatusSelect.js";
-import LocationSelect from "@/components/filterBar/LocationSelect.js";
-import LevelSelect from "@/components/filterBar/LevelSelect";
-import FilterButton from "@/components/filterBar/FilterButton";
-import ResetButton from "@/components/filterBar/ResetButton";
-import SearchInput from "@/components/filterBar/SearchInput";
 import ItemCount from "@/components/recruitment/ItemCount";
 import TableAllPosition from "@/components/recruitment/TableAllPosition";
 import { useState } from "react";
@@ -37,7 +31,7 @@ export default function Dashboard(){
         setSelects([status, location, level, search]);
     }
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 max-w-350">
             <HeaderContent title={title} description={description} />
             <Card/>
             <div className="px-8 flex flex-col gap-4">
@@ -57,16 +51,6 @@ export default function Dashboard(){
                         >
                             Create New Position
                         </button>
-                    </div>
-                </div>
-                <div className="flex justify-between">
-                    <SearchInput onChange={(value) => setSearch(value)} />
-                    <div className="flex gap-2 ">
-                        <StatusSelect onChange={(value) => (setStatus(value))} />
-                        <LocationSelect onChange={(value) => (setLocation(value))} />
-                        <LevelSelect onChange={(value) => (setLevel(value))} />
-                        <FilterButton onClick={hanldFilterButton}/>
-                        <ResetButton onClick={hanldResetButton} />
                     </div>
                 </div>
                 <TableAllPosition select ={selects}/>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Link from 'next/link';
 
 const api = axios.create({
   baseURL: '/'
@@ -12,20 +11,6 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
-// api.interceptors.request.use((config) => {
-//   const accessToken = localStorage.getItem('accessToken');
-//   const refreshToken = localStorage.getItem('refreshToken');
-
-//   if (accessToken) {
-//     config.headers = {
-//       ...config.headers, // giữ lại các header mặc định nếu có
-//       Authorization: `Bearer ${accessToken}`,
-//       'X-Refresh-Token': refreshToken
-//     };
-//   }
-
-//   return config;
-// });
 
 api.interceptors.response.use(
   response => response,
@@ -33,17 +18,16 @@ api.interceptors.response.use(
     const originalRequest = err.config;
 
     if (err.response?.status === 401 ){
-      // originalRequest._retry = true;
 
       try{
         const refreshTokenOld = localStorage.getItem('refreshToken');
         if (!refreshTokenOld) throw new Error("refresh token not available");
 
         const res = await axios.post('http://172.16.8.126:8088/auth/refresh', {
-          token: refreshTokenOld
+          refreshToken: refreshTokenOld
         });
 
-        const { accessToken, refreshToken } = res.data;
+        const { accessToken, refreshToken } = res.data.result;
         console.log("accsessToken", accessToken);
         console.log("refreshToken", refreshToken);
 

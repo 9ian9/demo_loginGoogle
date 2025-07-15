@@ -4,6 +4,7 @@ import { InfoItem } from '../table/InfoItem';
 import StatusItem from '../table/StatusItem';
 import { useEffect, useState } from 'react';
 import api from '@/lib/axiosInstance';
+import { convertKeyToTitle } from '../table/ConvertKeyToTitle';
 
 function TableAllPosition({Data}){
   const [allPositions, setAllPositions] = useState([]);
@@ -14,9 +15,10 @@ function TableAllPosition({Data}){
     const fetchData = async () => {
       try {
         const res = await api.get('/api/AllPosition.json');
-        const transformed = res.data.map(({ namePosition, numberOfPositions, numberOfApplicants, ...rest }) => ({
+        const transformed = res.data.map(({ title, numberOfPositions, numberOfApplicants, ...rest }, index) => ({
+          index: index,
           position: {
-            mainText: namePosition,
+            mainText: title,
             subText: `${numberOfPositions} ${numberOfPositions > 1 ? 'positions' : 'position'}`,
             classMainText: classMainText,
             classSubText: classSubText
@@ -33,21 +35,10 @@ function TableAllPosition({Data}){
     fetchData();
   }, [Data]);
 
-  const convertKeyToTitle = (key) => {
-    let result = key[0].toUpperCase();
-    for (let i = 1; i < key.length; i++) {
-      const char = key[i];
-      if (char === char.toUpperCase() && isNaN(char)) {
-        result += ' ' + char;
-      } else {
-        result += char;
-      }
-    }
-    return result;
-  };
-
   const dynamicColumns = allPositions[0]
-  ? Object.keys(allPositions[0]).map((key) => {
+  ? Object.keys(allPositions[0])
+  .filter((key) => key !== 'index')
+  .map((key) => {
       let column = {
         title: convertKeyToTitle(key),
         dataIndex: key,
@@ -72,7 +63,7 @@ function TableAllPosition({Data}){
     <div className=''>
       <Table dataSource={allPositions} 
       columns={dynamicColumns} 
-      rowKey={(record) => record.position.mainText} 
+      rowKey={(record) => record.index} 
       className='border-[#E2E8F0] border-[1] table-auto rounded-lg scoll custom-table' 
       scroll={{ y:280}} 
       pagination={false} />

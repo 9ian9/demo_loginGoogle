@@ -86,7 +86,7 @@ function SideBar() {
   };
 
   return (
-    <div className="w-70 h-175 flex flex-col border-r-1 border-[#E3E8EF] justify-between text-sm">
+    <div className="w-60 h-screen flex flex-col border-r-1 border-[#E3E8EF] justify-between text-sm">
       <div className="flex flex-col gap-6 pt-6">
         <div className="py-1 px-6">
           <Image src="/logohome.png" width={40} height={40} alt='logo' />
@@ -105,7 +105,10 @@ function SideBar() {
           </div>
         </Link>
         <div className="flex pl-2 pr-8 pt-6 gap-4 border-t-1 border-[#E3E8EF]">
-          <img src={imageUser} className="w-8 h-8 rounded-full" />
+          <img
+            src={imageUser || '/default-avatar.png'}
+            className="w-8 h-8 rounded-full"
+          />
           <div className="flex flex-col justify-center">
             <p className="text-sm text-[#1F2937] font-medium">{username}</p>
             <p className="text-xs text-[#374151]">{position}</p>
