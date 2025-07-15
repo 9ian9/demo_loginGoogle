@@ -14,8 +14,8 @@ function TableAllPosition({Data}){
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, level, location, deadline, status }, index) => ({
-          index: index,
+        const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, level, location, deadline, status, id }) => ({
+          id,
           position: {
             mainText: title,
             subText: `${numberOfPositions} ${numberOfPositions > 1 ? 'positions' : 'position'}`,
@@ -73,7 +73,7 @@ function TableAllPosition({Data}){
     <div className="">
       <Table dataSource={allPositions} 
       columns={dynamicColumns} 
-      rowKey={(record) => record.index} 
+      rowKey={(record) => record.id} 
       className='custom-table' 
       sticky={true}
       pagination={false} />
