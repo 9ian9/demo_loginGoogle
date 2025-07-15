@@ -84,9 +84,9 @@ function TableAllCadidates({ Data }) {
         dataSource={allCandidates}
         columns={dynamicColumns}
         rowKey={(record) => record.id} 
-        className="border-[#E2E8F0] border-[1] table-auto rounded-lg scoll custom-table"
-        scroll={{ y: 'calc(100vh - 350px)' }}
+        className=" custom-table"
         pagination={false}
+        sticky={true}
       />
     </div>
   );

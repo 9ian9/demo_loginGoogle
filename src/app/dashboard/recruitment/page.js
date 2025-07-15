@@ -44,7 +44,7 @@ export default function Dashboard(){
     ]
     
     return (
-        <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
+        <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
             <HeaderContent title={title} description={description} />
 
             <Card/>
@@ -75,7 +75,7 @@ export default function Dashboard(){
                 
                 <Filters allPosition={allPosition} keyValue={keySelect} filter={setFilters} />
             </div>      
-            <div className="flex-1 overflow-y-auto mx-[32px]">
+            <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
                 <TableAllPosition Data={allPosition}/>
             </div>
         </div>

@@ -36,7 +36,7 @@ export default function CandidatePage() {
   ]
 
   return (
-    <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
+    <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
         <BreakCrumbs />
         <div className="relative">
             <HeaderContent title={title} description={description}></HeaderContent>
@@ -50,7 +50,7 @@ export default function CandidatePage() {
             
             <Filters allPosition={allCandidate} keyValue={keySelect} filter={setFilters} />
         </div> 
-        <div className="flex-1 overflow-y-auto mx-[32px]">
+        <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
             <TableAllCadidates Data={allCandidate} />
         </div>
     </div>

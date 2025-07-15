@@ -103,7 +103,7 @@ function SideBar() {
           {navItems.map(renderNavLink)}
         </div>
       </div>
-      <div className="flex flex-col w-70 h-40 gap-6 px-4 pb-8">
+      <div className="flex flex-col gap-6 px-4 pb-8">
         <Link href="/dashboard/settings" className={pathname === '/dashboard/settings' ? 'px-2 py-2 bg-[#F3F4F6] rounded-[6]' : 'px-2 py-2 hover:bg-[#F3F4F6] rounded-[6]'}>
           <div className={pathname === '/dashboard/settings' ? 'gap-2 flex items-center text-[#0C376C] font-semibold' : 'gap-2 flex items-center text-[#747778] hover:text-[#0C376C] hover:font-semibold transition-all'}>
             <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
