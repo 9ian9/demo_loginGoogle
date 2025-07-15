@@ -1,14 +1,15 @@
-
 'use client' 
 
 import HeaderContent from "@/components/HeaderContent";
 import Card from "@/components/recruitment/Card";
 import ItemCount from "@/components/recruitment/ItemCount";
 import Filters from "@/components/filterBar/Filters";
+import SearchInput from "@/components/filterBar/SearchInput";
 import TableAllPosition from "@/components/recruitment/TableAllPosition";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/axiosInstance";
+import { all } from "axios";
 
 export default function Dashboard(){
 
@@ -22,31 +23,28 @@ export default function Dashboard(){
         router.push('/dashboard/recruitment/createform');
     }
 
-    //  useEffect(() =>{
-    //     const fetchPositions = async() =>{
-    //         try {
-    //             const response = await api.get("/api/allPosition",{params:filters});
-    //             setAllPositions(response.data);
-    //         }
-    //         catch (error){
-    //             console.log("Error:",error)
-    //         }
-    //     }
-    //     fetchPositions();
-    // },[])
+     useEffect(() =>{
+        const fetchPositions = async() =>{
+            try {
+                const response = await api.get("/position/all",{params:filters});
+                setAllPositions(response.data.result);
+            }
+            catch (error){
+                console.log("Error:",error)
+            }
+        }
+        fetchPositions();
+    },[filters])
 
-    const mockData = [
-    { title: "Backend Developer", numberOfPositions: 2, numberOfApplicants: 5, level: "Middle", location: "NZ", deadline: "06/15/2023", status: "Open" },
-    { title: "UI/UX Designer", numberOfPositions: 1, numberOfApplicants: 1, level: "Junior", location: "US", deadline: "06/15/2023", status: "Open" },
-    { title: "Full Stack Developer", numberOfPositions: 2, numberOfApplicants: 3, level: "Senior", location: "VN", deadline: "06/30/2023", status: "Open" },
-    { title: "Data Scientist", numberOfPositions: 4, numberOfApplicants: 4, level: "Lead", location: "VN", deadline: "06/01/2023", status: "Closed" },
-    { title: "DevOps Engineer", numberOfPositions: 2, numberOfApplicants: 8, level: "Intern", location: "VN", deadline: "06/15/2023", status: "Open" },
-    ];
-
-    const keySelect = ["status", "location","level"]
+    const keySelect = [
+        {key:"status", label:"Status"},
+        {key:"title", label:"Position"},
+        {key:"level",label:"Level"},  
+        {key:"location",label:"Locations"}
+    ]
     
     return (
-        <div className="flex flex-col gap-6 max-w-350">
+        <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
             <HeaderContent title={title} description={description} />
 
             <Card/>
@@ -73,12 +71,12 @@ export default function Dashboard(){
             </div>
             
             <div className="FilterBar flex justify-between mx-[32px] ">
-                {/* <SearchInput onChange={(value) => setSearch(value)} /> */}
+                <SearchInput onChange={(value) => setSearch(value)} />
                 
-                <Filters allPosition={mockData} keyValue={keySelect} filter={setFilters} />
+                <Filters allPosition={allPosition} keyValue={keySelect} filter={setFilters} />
             </div>      
-            <div className="mx-[32px]">
-                <TableAllPosition Data={mockData}/>
+            <div className="flex-1 overflow-y-auto mx-[32px]">
+                <TableAllPosition Data={allPosition}/>
             </div>
         </div>
     );
