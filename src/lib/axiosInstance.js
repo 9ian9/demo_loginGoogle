@@ -1,8 +1,9 @@
 import axios from 'axios';
 import Link from 'next/link';
+import { API_BASE_URL } from './config';
 
 const api = axios.create({
-  baseURL: 'http://172.16.8.126:8088/'
+  baseURL: API_BASE_URL+'/'
 });
 
 api.interceptors.request.use((config) => {
@@ -24,7 +25,7 @@ api.interceptors.response.use(
         const refreshTokenOld = localStorage.getItem('refreshToken');
         if (!refreshTokenOld) throw new Error("refresh token not available");
 
-        const res = await axios.post('http://172.16.8.126:8088/auth/refresh', {
+        const res = await axios.post(`${API_BASE_URL}/auth/refresh`, {
           refreshToken: refreshTokenOld
         });
 

@@ -22,33 +22,11 @@ export default function Filters ({allPosition, keyValue ,filter}){
     
     return (
         <div className="flex gap-4">
-            {keyValue.map(({key,label}) =>{
+            {keyValue.map(({key,label,index}) =>{
 
                 const options = getUniqueOptions(key);
 
                 return (
-                    // <select key={key} 
-                    //         value= {selectedFilters[key] || ""}
-                    //         className="select w-auto h-auto pr-10 px-4 border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
-                    //         onChange={(e) =>
-                    //                     setSelectedFilters((prev) => ({
-                    //                         ...prev,
-                    //                         [key]: e.target.value,
-                    //                     }))
-                    //                 }
-                    // >
-                    //     <option hidden>{label}</option>
-                    //     {
-                    //         <select>
-                    //             <option hidden>{label}</option>
-                    //             {options.map((option, index) => (
-                    //                 <option key={`${option}-${index}`} value={option}>
-                    //                 {option}
-                    //                 </option>
-                    //             ))}
-                    //         </select>
-                    //     }
-                    // </select>
                     <div key={key}>
                         <select
                             key={key}

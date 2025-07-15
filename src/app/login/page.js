@@ -31,7 +31,7 @@ function Login() {
 
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', newRefresh);
-          router.push('/dashboard');          
+          router.push('/dashboard/recruitment');          
         } catch (err) {
           console.error('Unable to refresh token:', err);
           localStorage.removeItem('accessToken');

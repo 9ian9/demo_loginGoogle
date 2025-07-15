@@ -59,12 +59,12 @@ function TableAllPosition({Data}){
   : [];
 
   return(
-    <div className=''>
+    <div className="">
       <Table dataSource={allPositions} 
       columns={dynamicColumns} 
       rowKey={(record) => record.index} 
-      className='border-[#E2E8F0] border-[1] table-auto rounded-lg scoll custom-table' 
-      scroll={{ y:280}} 
+      className='border-[#E2E8F0] border-[1] table-auto rounded-lg  custom-table' 
+      sticky={true}
       pagination={false} />
     </div>
   )
