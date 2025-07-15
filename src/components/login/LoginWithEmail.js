@@ -45,7 +45,7 @@ const toggleClickSignIn = async (emailInput, passwordInput) => {
             password: passwordInput
         });
 
-        const { accessToken, refreshToken } = res.data;
+        const { accessToken, refreshToken } = res.data.result;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         

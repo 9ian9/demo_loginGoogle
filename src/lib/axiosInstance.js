@@ -50,7 +50,7 @@ api.interceptors.response.use(
       }
     }
 
-    return Promise.resolve(err);
+    return Promise.reject(err);
   }
 );
 

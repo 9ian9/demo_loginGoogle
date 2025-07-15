@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
 import ItemCount from "@/components/recruitment/ItemCount";
-import TableAllPosition from "@/components/recruitment/TableAllPosition";
+import TableAllCadidates from '@/components/candidates/TableAllCandidates';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
@@ -35,9 +35,8 @@ export default function CandidatePage() {
     {key:"level",label:"Level"},            
   ]
 
-
   return (
-    <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
+    <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
         <BreakCrumbs />
         <div className="relative">
             <HeaderContent title={title} description={description}></HeaderContent>
@@ -51,8 +50,8 @@ export default function CandidatePage() {
             
             <Filters allPosition={allCandidate} keyValue={keySelect} filter={setFilters} />
         </div> 
-        <div className="flex-1 overflow-y-auto mx-[32px]">
-            <TableAllPosition Data={allCandidate} />
+        <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
+            <TableAllCadidates Data={allCandidate} />
         </div>
     </div>
   );

@@ -1,10 +1,10 @@
 'use client'
-import {Select, Table} from 'antd';
+import {Table} from 'antd';
 import { InfoItem } from '../table/InfoItem';
 import StatusItem from '../table/StatusItem';
 import { useEffect, useState } from 'react';
-import api from '@/lib/axiosInstance';
 import { convertKeyToTitle } from '../table/ConvertKeyToTitle';
+import { ChangeDateDisplay } from '../table/ChangeDateDisplay';
 
 function TableAllPosition({Data}){
   const [allPositions, setAllPositions] = useState([]);
@@ -14,7 +14,7 @@ function TableAllPosition({Data}){
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, ...rest }, index) => ({
+        const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, level, location, deadline, status }, index) => ({
           index: index,
           position: {
             mainText: title,
@@ -23,7 +23,10 @@ function TableAllPosition({Data}){
             classSubText: classSubText
           },
           numberOfApplicants: `${numberOfApplicants} ${numberOfApplicants > 1 ? 'Candidates' : 'Candidates'}`,
-          ...rest
+          level,
+          location,
+          deadline,
+          status
         }));
         setAllPositions(transformed);
       } catch (err) {
@@ -36,7 +39,7 @@ function TableAllPosition({Data}){
 
   const dynamicColumns = allPositions[0]
   ? Object.keys(allPositions[0])
-  .filter((key) => key !== 'index')
+  .filter((key) => key !== 'index' && key !== 'id' && key !== 'description')
   .map((key) => {
       let column = {
         title: convertKeyToTitle(key),
@@ -54,6 +57,14 @@ function TableAllPosition({Data}){
          column.width = 100;
       }
 
+      if (key === 'deadline'){
+        column.render = (date) => ChangeDateDisplay(date);
+      }
+
+      if (key === 'numberOfApplicants'){
+        column.width = 200;
+      }
+
       return column;
     })
   : [];
@@ -63,7 +74,7 @@ function TableAllPosition({Data}){
       <Table dataSource={allPositions} 
       columns={dynamicColumns} 
       rowKey={(record) => record.index} 
-      className='border-[#E2E8F0] border-[1] table-auto rounded-lg  custom-table' 
+      className='custom-table' 
       sticky={true}
       pagination={false} />
     </div>

@@ -9,7 +9,6 @@ import TableAllPosition from "@/components/recruitment/TableAllPosition";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/axiosInstance";
-import { all } from "axios";
 
 export default function Dashboard(){
 
@@ -76,7 +75,7 @@ export default function Dashboard(){
                 
                 <Filters allPosition={allPosition} keyValue={keySelect} filter={setFilters} />
             </div>      
-            <div className="flex-1 overflow-y-auto mx-[32px]">
+            <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
                 <TableAllPosition Data={allPosition}/>
             </div>
         </div>
