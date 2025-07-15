@@ -1,63 +1,69 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter,useSearchParams} from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import api from '@/lib/axiosInstance';
-import LoginWithEmail from '@/components/login/LoginWithEmail.js';
+import LoginWithEmail from '@/components/login/LoginWithEmail';
 import LoginWithGoogle from '@/components/login/LoginWithGoogle';
 
 function Login() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
+
+  const [checking, setChecking] = useState(true);
+
   useEffect(() => {
     const checkAccessToken = async () => {
+      const token = localStorage.getItem('accessToken');
+      const refreshToken = localStorage.getItem('refreshToken');
 
-      const token = localStorage.getItem('access_token');
-      const refreshToken = localStorage.getItem('refresh_token');
+      if (token) {
+        // router.push('/dashboard/recruitment');
+        return;
+      }
 
-      if (token){
-        router.push('/home');      }
-
-      if (!token && refreshToken) {
+      if (refreshToken) {
         try {
-          const res = await api.post('/api/token', {
-            refresh_token: refreshToken
-          });
+          const res = await api.post('http://172.16.8.126:8088/auth/refresh', { refreshToken: refreshToken });
+          const { accessToken, refreshToken: newRefresh } = res.data;
 
-          const { access_token } = res.data;
-          localStorage.setItem('access_token', access_token);
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', newRefresh);
+          router.push('/dashboard/recruitment');          
         } catch (err) {
-          console.log('Unable to refresh token:', err);
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('refresh_token');
-          window.location.href = '/login';
+          console.error('Unable to refresh token:', err);
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
         }
       }
+      setChecking(false);
     };
 
     checkAccessToken();
-  }, []);
-  const searchParams=useSearchParams();
-  const error =searchParams.get("error");
+  }, [router]);
 
-    return(
-        <div className="bg-white flex justify-center items-center h-screen">
-            <div className="bg-[#F9FAFB] py-20 px-10 shadow-[0_4px_12px_#DCDCDC]">
-                <div className="flex flex-col gap-4">
+  if (checking) return null;
 
-                    <div className="flex flex-col gap-2 items-center">
-                        <img src="/logo.png" className="h-12 w-33" alt='Logo Bespokify' />
-                        <p className="text-2xl font-bold">Sign in</p>
-                    </div>
+  return(
+    <div className="bg-white flex justify-center items-center h-screen">
+        <div className="bg-[#F9FAFB] py-20 px-10 shadow-[0_4px_12px_#DCDCDC]">
+            <div className="flex flex-col gap-4">
 
-                    <div className="flex flex-col gap-4">
-                        <LoginWithEmail />
-                        <div className="divider h-5 m-0 text-xs">or</div>
+              <div className="flex flex-col gap-2 items-center">
+                <img src="/logo.png" className="h-12 w-33" alt='Logo Bespokify' />
+                <p className="text-2xl font-bold">Sign in</p>
+              </div>
 
-                        <LoginWithGoogle/>
-                    </div>
-                </div>
+              <div className="flex flex-col gap-4">
+                <LoginWithEmail />
+                <div className="divider h-5 m-0 text-xs">or</div>
+                <LoginWithGoogle/>
+              </div>
+
             </div>
         </div>
-    )
+    </div>
+  )
 }
 export default Login;

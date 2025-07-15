@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
+import api from '@/lib/axiosInstance';
 
 export default function LoginForm() {
     const router = useRouter();
@@ -10,40 +11,46 @@ export default function LoginForm() {
     const [password, setPassword] = useState('');
     const [feedback, setFeedback] = useState('');
     const [isLoginFailed, setIsLoginFailed] = useState(false);
+
     const classLoginDefault = "input border-1 focus-within:ring-1 focus-within:border-none focus-within:outline-none focus-within:shadow-none input w-100 h-12 py-3.5 px-4 rounded-[8]";
     const classLogin = `${classLoginDefault} ${isLoginFailed ? 'border-red-500 focus-within:ring-red-500' : 'focus-within:ring-gray-300'}`;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const success = toggleClickSignIn(email, password);
-        if (success) {
-            setIsLoginFailed(false);
-        } else {
-            setIsLoginFailed(true);
-            setFeedback("Email and password you entered is incorrect, Please try again.");
-        }
-    };
-
-    const toggleClickSignIn = async (emailInput, passwordInput) => {
-    try {
-      const res = await api.post('https://172.16.8.124:8080/api/login', {
-        email: emailInput,
-        password: passwordInput
-      });
-
-      const { access_token, refresh_token } = res.data;
-
-      localStorage.setItem('access_token', access_token);
-      localStorage.setItem('refresh_token', refresh_token);
-
-      router.push('/');
-    } catch (err) {
-      console.log('Login error:', err);
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await toggleClickSignIn(email, password);
+    if (success) {
+        setIsLoginFailed(false);
+    } else {
+        setIsLoginFailed(true);
+        setFeedback("Email and password you entered is incorrect, Please try again.");
     }
-    };
+};
+
+const toggleClickSignIn = async (emailInput, passwordInput) => {
+    try {
+
+        const res = await api.post('http://172.16.8.126:8088/auth/token', {
+            email: emailInput,
+            password: passwordInput
+        });
+
+        const { accessToken, refreshToken } = res.data;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        
+        console.log("accessToken: ", accessToken);
+        console.log("refreshToken: ", refreshToken);
+        
+        router.push('/dashboard');
+        return true;
+    } catch (err) {
+        console.log('Login error:', err);
+        return false;
+    }
+};
 
     const toggleClickForgotPassword = () => {
-        alert("Ban da nhan quen mat khau");
+        alert("You have forgotten the password");
     }
 
     return (

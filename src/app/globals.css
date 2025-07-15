@@ -25,3 +25,10 @@ body {
   color: var(--foreground);
   font-family: 'Roboto', sans-serif;
 }
+
+.custom-table .ant-table-cell {
+  padding: 8px 10px !important;
+}
+.custom-table .ant-table-content table {
+  table-layout: auto !important;
+}

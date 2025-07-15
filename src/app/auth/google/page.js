@@ -1,5 +1,6 @@
 'use client';
 
+import { API_BASE_URL } from '@/lib/config';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -14,25 +15,24 @@ export default function GoogleCallbackPage() {
     
     const exchangeCode = async () => {
       try {
-        const response = await fetch('http://172.16.8.126:8088/auth/google', {
+          const response = await fetch(API_BASE_URL+`/auth/google?code=${encodeURIComponent(code)}`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ code }),
-        });
+    });
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || `Backend error: ${response.status}`);
       }
 
-        const data = await response.json();
-        console.log('Backend response:', data);
-
-        localStorage.setItem('access_token', data.accesstoken);
-        localStorage.setItem('refresh_token', data.refreshtoken);
+      const data = await response.json();
+      console.log(data)
+      if(data.result.authenticated)
+      {
+        localStorage.setItem('accessToken', data.result.accessToken);
+        localStorage.setItem('refreshToken', data.result.refreshToken);
         router.push("/dashboard/recruitment")
+      }
+
       } 
       catch (err) {
         console.error('OAuth2 exchange error:', err.message);
@@ -44,10 +44,6 @@ export default function GoogleCallbackPage() {
     exchangeCode();
   }, [searchParams, router]);
 
-  return (
-    <>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-    </>
-  );
+  return null
 }
 

@@ -11,7 +11,7 @@ function SideBar() {
   const [imageUser, setImageUser] = useState('');
   const [username, setUsername] = useState('');
   const [position, setPosition] = useState('');
-  const ImageLogo ='/logohome.png'
+
   useEffect(() => {
     setImageUser('https://photo.znews.vn/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg');
     setUsername('Thuy Tien');
@@ -86,10 +86,10 @@ function SideBar() {
   };
 
   return (
-    <div className="w-60 h-175 flex flex-col border-r-1 border-[#E3E8EF] justify-between text-sm">
+    <div className="w-70 h-175 flex flex-col border-r-1 border-[#E3E8EF] justify-between text-sm">
       <div className="flex flex-col gap-6 pt-6">
         <div className="py-1 px-6">
-          <Image src={ImageLogo} width={40} height={40} alt='logo' />
+          <Image src="/logohome.png" width={40} height={40} alt='logo' />
         </div>
         <div className="flex flex-col gap-2 px-4">
           {navItems.map(renderNavLink)}
@@ -105,7 +105,7 @@ function SideBar() {
           </div>
         </Link>
         <div className="flex pl-2 pr-8 pt-6 gap-4 border-t-1 border-[#E3E8EF]">
-          {/* <Image src={imageUser} width={60} height={60}  style={{ borderRadius: '100%', objectFit: 'cover' }} alt='user'/> */}
+          <img src={imageUser} className="w-8 h-8 rounded-full" />
           <div className="flex flex-col justify-center">
             <p className="text-sm text-[#1F2937] font-medium">{username}</p>
             <p className="text-xs text-[#374151]">{position}</p>

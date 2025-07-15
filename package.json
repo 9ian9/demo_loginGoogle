@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "antd": "^5.26.4",
     "axios": "^1.10.0",
     "axois": "^0.0.1-security",
     "daisyui": "^5.0.43",
