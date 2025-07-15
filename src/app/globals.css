@@ -24,6 +24,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Roboto', sans-serif;
+  width: screen;
+  height: screen;
+}
+.custom-table .ant-table-cell {
+  padding: 8px 10px !important;
+}
+.custom-table .ant-table-content table {
+  table-layout: auto !important;
 }
 
 .custom-table .ant-table-cell {

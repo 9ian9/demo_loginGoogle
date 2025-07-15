@@ -47,8 +47,7 @@ export default function Dashboard(){
     const keySelect = ["status", "location","level"]
     
     return (
-        <div className="flex flex-col gap-4 h-full">
-
+        <div className="flex flex-col gap-6 max-w-350">
             <HeaderContent title={title} description={description} />
 
             <Card/>

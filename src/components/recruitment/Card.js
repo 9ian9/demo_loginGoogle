@@ -22,7 +22,7 @@ export default function Card(){
 function CardItem({title,quantity,href}){
 
     return (
-        <div className="border border-[#E5E7EB] shadow-xs rounded-xl w-full px-[24px] py-[16px]">
+        <div className="border border-[#E5E7EB] shadow-xs rounded-xl w-full px-[16px] py-[12px]">
             <h2 className="text-base font-bold mb-[8px]">{title}</h2>
             <div className='flex justify-between items-end  '>
                 <div className="text-2xl leading-10 font-bold">

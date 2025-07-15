@@ -16,20 +16,31 @@ export default function LoginForm() {
     const classLogin = `${classLoginDefault} ${isLoginFailed ? 'border-red-500 focus-within:ring-red-500' : 'focus-within:ring-gray-300'}`;
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
-    const success = await toggleClickSignIn(email, password);
-    if (success) {
-        setIsLoginFailed(false);
+  e.preventDefault();
+
+  try {
+    await toggleClickSignIn(email, password);
+    setIsLoginFailed(false); 
+  } catch (error) {
+    const code = error?.response?.data?.code;
+
+    if (code === 1004 || code === 1005) {
+      setIsLoginFailed(true);
+      setFeedback("Email and password you entered is incorrect, Please try again.");
     } else {
-        setIsLoginFailed(true);
-        setFeedback("Email and password you entered is incorrect, Please try again.");
+      setIsLoginFailed(true);
+      setFeedback("An unexpected error occurred. Please try again later.");
     }
+
+    console.error(error);
+  }
 };
+
 
 const toggleClickSignIn = async (emailInput, passwordInput) => {
     try {
 
-        const res = await api.post('http://172.16.8.126:8088/auth/token', {
+        const res = await api.post('http://172.16.8.126:8088/auth/local', {
             email: emailInput,
             password: passwordInput
         });

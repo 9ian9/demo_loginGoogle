@@ -14,7 +14,12 @@ function TableAllPosition({Data}){
   useEffect(() => {
     const fetchData = async () => {
       try {
+<<<<<<< HEAD
+        const res = await api.get('/api/AllPosition.json');
+        const transformed = res.data.map(({ title, numberOfPositions, numberOfApplicants, ...rest }, index) => ({
+=======
         const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, ...rest }, index) => ({
+>>>>>>> 11cc44ddc5dd70b2069a7de1f9cf08f6509e4ffc
           index: index,
           position: {
             mainText: title,
@@ -36,7 +41,11 @@ function TableAllPosition({Data}){
 
   const dynamicColumns = allPositions[0]
   ? Object.keys(allPositions[0])
+<<<<<<< HEAD
+  .filter((key) => key !== 'index')
+=======
   .filter((key) => (key !== 'index'))
+>>>>>>> 11cc44ddc5dd70b2069a7de1f9cf08f6509e4ffc
   .map((key) => {
       let column = {
         title: convertKeyToTitle(key),

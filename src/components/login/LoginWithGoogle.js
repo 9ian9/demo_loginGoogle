@@ -12,7 +12,6 @@ export default function LoginWithGoogle() {
       response_type: 'code',
       scope: 'openid email profile',
       prompt: 'login',
-      
     };
 
     const qs = new URLSearchParams(options);

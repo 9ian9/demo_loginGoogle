@@ -19,18 +19,23 @@ function Login() {
       const refreshToken = localStorage.getItem('refreshToken');
 
       if (token) {
+<<<<<<< HEAD
         router.push('/dashboard/recruitment');
+=======
+        router.push('/dashboard');
+>>>>>>> 2f1ab89341243e07f53b52b091762b71ea1f8357
         return;
       }
 
       if (refreshToken) {
         try {
-          const res = await api.post('http://172.16.8.126:8088/auth/refresh', { refreshToken: refreshToken });
-          const { accessToken, refreshToken: newRefresh } = res.data;
+          const res = await api.post('http://172.16.8.126:8088/auth/refresh',
+            { refreshToken: refreshToken });
+          const { accessToken, refreshToken: newRefresh } = res.data.result;
 
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', newRefresh);
-          router.push('/dashboard/recruitment');          
+          router.push('/dashboard');          
         } catch (err) {
           console.error('Unable to refresh token:', err);
           localStorage.removeItem('accessToken');

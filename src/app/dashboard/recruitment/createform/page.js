@@ -1,7 +1,9 @@
+import PositionInformation from "@/components/createForm/PositionInformation";
+
 function CreateForm(){
     return(
         <>
-            trang create form
+            <PositionInformation />
         </>
     )
 }
