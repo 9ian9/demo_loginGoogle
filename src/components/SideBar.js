@@ -105,14 +105,10 @@ function SideBar() {
           </div>
         </Link>
         <div className="flex pl-2 pr-8 pt-6 gap-4 border-t-1 border-[#E3E8EF]">
-<<<<<<< HEAD
           <img
             src={imageUser || '/default-avatar.png'}
             className="w-8 h-8 rounded-full"
           />
-=======
-          {/* <Image src={imageUser} width={60} height={60}  style={{ borderRadius: '100%', objectFit: 'cover' }} alt='user'/> */}
->>>>>>> 11cc44ddc5dd70b2069a7de1f9cf08f6509e4ffc
           <div className="flex flex-col justify-center">
             <p className="text-sm text-[#1F2937] font-medium">{username}</p>
             <p className="text-xs text-[#374151]">{position}</p>

@@ -5,7 +5,6 @@ import HeaderContent from "@/components/HeaderContent";
 import Card from "@/components/recruitment/Card";
 import ItemCount from "@/components/recruitment/ItemCount";
 import Filters from "@/components/filterBar/Filters";
-import SearchInput from "@/components/filterBar/SearchInput";
 import TableAllPosition from "@/components/recruitment/TableAllPosition";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -74,7 +73,7 @@ export default function Dashboard(){
             </div>
             
             <div className="FilterBar flex justify-between mx-[32px] ">
-                <SearchInput onChange={(value) => setSearch(value)} />
+                {/* <SearchInput onChange={(value) => setSearch(value)} /> */}
                 
                 <Filters allPosition={mockData} keyValue={keySelect} filter={setFilters} />
             </div>      
