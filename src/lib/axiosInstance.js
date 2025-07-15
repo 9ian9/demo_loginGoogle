@@ -2,7 +2,7 @@ import axios from 'axios';
 import Link from 'next/link';
 
 const api = axios.create({
-  baseURL: '/'
+  baseURL: 'http://172.16.8.126:8088/'
 });
 
 api.interceptors.request.use((config) => {
