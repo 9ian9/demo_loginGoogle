@@ -7,7 +7,6 @@ export default function Filters ({allPosition, keyValue ,filter}){
         return [...new Set(allPosition.map(item => item[key]))]
     }
 
-    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
     
     const handleFilterClick =()=>{
         filter(selectedFilters)
@@ -20,10 +19,13 @@ export default function Filters ({allPosition, keyValue ,filter}){
         filter(reset)
         console.log(selectedFilters)
     }
+    
     return (
         <div className="flex gap-4">
-            {keyValue.map((key) =>{
+            {keyValue.map(({key,label}) =>{
+
                 const options = getUniqueOptions(key);
+
                 return (
                     <select key={key} 
                             value= {selectedFilters[key] || ""}
@@ -35,9 +37,9 @@ export default function Filters ({allPosition, keyValue ,filter}){
                                         }))
                                     }
                     >
-                        <option hidden>{capitalize(key)}</option>
+                        <option hidden>{label}</option>
                         {
-                            options.map((option) =>(<option key={option} value={option}>{option}</option>))
+                            options.map((option) =>(<option key={`${option}-${index}`} value={option}>{option}</option>))
                         }
                     </select>
                 )
