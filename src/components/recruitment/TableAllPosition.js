@@ -14,19 +14,18 @@ function TableAllPosition({Data}){
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, level, location, deadline, status }, index) => ({
-          index: index,
+        const transformed = Data.map(({ title, numberOfPositions, numberOfApplicants, level, location, deadline, status, id }) => ({
           position: {
             mainText: title,
             subText: `${numberOfPositions} ${numberOfPositions > 1 ? 'positions' : 'position'}`,
             classMainText: classMainText,
             classSubText: classSubText
           },
-          numberOfApplicants: `${numberOfApplicants} ${numberOfApplicants > 1 ? 'Candidates' : 'Candidates'}`,
+          numberOfApplicants: `${numberOfApplicants} ${numberOfApplicants > 1 ? 'Candidates' : 'Candidate'}`,
           level,
           location,
           deadline,
-          status
+          status, id
         }));
         setAllPositions(transformed);
       } catch (err) {

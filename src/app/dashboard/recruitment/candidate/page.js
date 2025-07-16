@@ -18,7 +18,7 @@ export default function CandidatePage() {
   useEffect(() =>{
         const fetchCandidates = async() =>{
             try {
-                const response = await api.get("candidate/all",{ params: filters });
+                const response = await api.get("candidate/filter",{ params: filters });
                 setAllCandidate(response.data.result);
                 console.log(response.data.result)
             }

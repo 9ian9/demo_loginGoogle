@@ -8,30 +8,34 @@ import { ChangeDateDisplay } from "../table/ChangeDateDisplay";
 import { useEffect, useState } from "react";
 import { Table } from "antd";
 
-function TableAllCadidates({ Data }) {
-  const [allCandidates, setAllCandidetes] = useState([]);
+function TableAllInterviews({ Data }) {
+  const [allInterviews, setAllInterviews] = useState([]);
   const classMainText = "text-base font-semibold";
   const classSubText = "text-sm text-[#0091FF]";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transformed = Data.map(({ name, resumeUrl, positionTitle, level, applicationDate, source, score, status, id }) => ({
+        const transformed = Data.map(({ candidateName, candidateResumeUrl, positionTitle, positionLevel, interviewerName, interviewerJob, interviewerRound, scheduledTime, id }) => ({
           infomation: {
-            mainText: name,
-            subText: resumeUrl,
+            mainText: candidateName,
+            subText: candidateResumeUrl,
             classMainText: classMainText,
             classSubText: classSubText,
           },
           positionTitle,
-          level,
-          applicationDate,
-          source,
-          score,
-          status,
-          id
+          positionLevel,
+          interview:
+          {
+            mainText: interviewerName,
+            subText: interviewerJob,
+            classMainText: classMainText,
+            classSubText: "text-sm"
+          },
+          scheduledTime,
+          interviewerRound, id
         }));
-        setAllCandidetes(transformed);
+        setAllInterviews(transformed);
       } catch (err) {
         console.log("Error fetching mock data: ", err);
       }
@@ -40,9 +44,9 @@ function TableAllCadidates({ Data }) {
     fetchData();
   }, [Data]);
 
-  const dynamicColumns = allCandidates[0]
-    ? Object.keys(allCandidates[0])
-        .filter((key) => key !== 'index' && key !== 'id')
+  const dynamicColumns = allInterviews[0]
+    ? Object.keys(allInterviews[0])
+        .filter((key) => key !== 'id')
         .map((key) => {
           let column = {
             title: convertKeyToTitle(key),
@@ -50,29 +54,29 @@ function TableAllCadidates({ Data }) {
             key: key,
           };
 
-          if (key === 'positionTitle') {
-            column.title = 'Position';
+          if (key === 'infomation') {
+            column.title = 'Name';
+            column.render = (data) => <InfoItem data={data} />;
+            column.width = 300;
+          }
+          if (key === 'interview') {
+            column.title = 'Interviewer';
+            column.render = (data) => <InfoItem data={data} />;
             column.width = 200;
           }
 
-          if (key === 'infomation') {
-            column.render = (data) => <InfoItem data={data} />;
-            column.width = 350;
-          }
-
-          if (key === 'status') {
+          if (key === 'interviewerRound') {
             column.render = (status) => <StatusItem status={status} />;
-            column.width = 100;
+            column.width = 150;
           }
 
-          if (key === 'applicationDate') {
+          if (key === 'scheduledTime') {
             column.title = 'Date applies';
-            column.render = (date) => ChangeDateDisplay(date);
+            column.render = (date) => ChangeDateDisplay(date, true);
           }
 
-          if (key === 'source') {
-            column.title = 'From';
-            column.render = (source) => <SourceItem source={source} />;
+          if (key === 'positionTitle'){
+            column.title = 'Position';
           }
 
           return column;
@@ -82,7 +86,7 @@ function TableAllCadidates({ Data }) {
   return (
     <div>
       <Table
-        dataSource={allCandidates}
+        dataSource={allInterviews}
         columns={dynamicColumns}
         rowKey={(record) => record.id} 
         className=" custom-table"
@@ -93,4 +97,4 @@ function TableAllCadidates({ Data }) {
   );
 }
 
-export default TableAllCadidates;
+export default TableAllInterviews;
