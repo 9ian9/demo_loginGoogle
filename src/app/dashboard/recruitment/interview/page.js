@@ -37,8 +37,8 @@ export default function CandidatePage() {
   const keySelect = [
     {key:"interviewRound", label:"Status"},
     {key:"positionTitle", label:"Position"},
-    {key:"positionLevel", label:"Level"}, 
-    {key:"interviewerJob", label:"Interviewer"}           
+    {key:"positionLevel",label:"Level"}, 
+    {key:"interviewerName",label:"Interviewer"}           
   ]
 
     const renderMap = [

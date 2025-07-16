@@ -22,7 +22,7 @@ export default function Dashboard(){
     const [filters,setFilters]=useState({});
 
     const hanldCreateFormButton = () => {
-        router.push('/createform');
+        router.push('/dashboard/recruitment/createform');
     }
 
      useEffect(() =>{
