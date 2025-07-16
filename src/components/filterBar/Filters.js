@@ -1,10 +1,10 @@
 'use client'
 import { useState, useEffect } from "react"
-export default function Filters ({allPosition, keyValue ,filter}){
+export default function Filters ({dataTable, keyValue ,filter}){
     const [selectedFilters,setSelectedFilters] =useState({});
 
     const getUniqueOptions =(key) =>{
-        return [...new Set(allPosition.map(item => item[key]))]
+        return [...new Set(dataTable.map(item => item[key]))]
     }
 
     
@@ -27,28 +27,21 @@ export default function Filters ({allPosition, keyValue ,filter}){
                 const options = getUniqueOptions(key);
 
                 return (
-                    <div key={key}>
-                        <select
-                            key={key}
-                            value={selectedFilters[key] || ""}
-                            className="select w-full px-4 border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
+                    <select key={`${key}-${index}`} 
+                            value= {selectedFilters[key] || ""}
+                            className="select w-auto h-auto pr-10 px-4 border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
                             onChange={(e) =>
-                            setSelectedFilters((prev) => ({
-                                ...prev,
-                                [key]: e.target.value,
-                            }))
-                            }
-                        >
-                            <option value="" disabled hidden>
-                            {label}
-                            </option>
-                            {options.map((option, index) => (
-                            <option key={`${option}-${index}`} value={option}>
-                                {option}
-                            </option>
-                            ))}
-                        </select>
-                    </div>   
+                                        setSelectedFilters((prev) => ({
+                                            ...prev,
+                                            [key]: e.target.value,
+                                        }))
+                                    }
+                    >
+                        <option hidden>{label}</option>
+                        {
+                            options.map((option,index) =>(<option key={`${option}-${index}`} value={option}>{option}</option>))
+                        }
+                    </select>
                 )
             })} 
 

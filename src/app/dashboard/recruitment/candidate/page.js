@@ -9,7 +9,7 @@ import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
 
 export default function CandidatePage() {
-  const title = "All candidates";
+  const title = "All Candidates";
   const description = "Manage your candidates and detail here.";
   const [filters, setFilters] = useState({});
   const [allCandidate,setAllCandidate] = useState([]);
@@ -18,7 +18,7 @@ export default function CandidatePage() {
   useEffect(() =>{
         const fetchCandidates = async() =>{
             try {
-                const response = await api.get("candidate/filter",{ params: filters });
+                const response = await api.get("/candidate/filter",{ params: filters });
                 setAllCandidate(response.data.result);
                 console.log(response.data.result)
             }
@@ -48,7 +48,7 @@ export default function CandidatePage() {
         <div className="FilterBar flex justify-between mx-[32px] ">
             <SearchInput onChange={(value) => setSearch(value)} />
             
-            <Filters allPosition={allCandidate} keyValue={keySelect} filter={setFilters} />
+            <Filters dataTable={allCandidate} keyValue={keySelect} filter={setFilters} />
         </div> 
         <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
             <TableAllCadidates Data={allCandidate} />

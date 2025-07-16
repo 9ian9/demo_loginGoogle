@@ -16,7 +16,7 @@ function TableAllCadidates({ Data }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transformed = Data.map(({ name, resumeUrl, positionTitle, level, applicationDate, source, score, status, id }) => ({
+        const transformed = Data.map(({ name, resumeUrl, positionTitle, level, applicationDate, source, score, status, id}) => ({
           infomation: {
             mainText: name,
             subText: resumeUrl,

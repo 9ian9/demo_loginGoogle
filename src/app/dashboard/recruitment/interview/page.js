@@ -3,33 +3,38 @@
 import { useState, useEffect } from 'react';
 import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
 import ItemCount from "@/components/recruitment/ItemCount";
+import TableAllCadidates from '@/components/candidates/TableAllCandidates';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
-import TableAllInterviews from '@/components/interview/TableAllInterviews';
 import api from '@/lib/axiosInstance';
 
-export default function InterviewPage() {
+export default function CandidatePage() {
   const title = "All Interview";
   const description = "Manage your candidates and detail here.";
   const [filters, setFilters] = useState({});
-  const [allInterviews, setAllInterviews] = useState([]);
+  const [allInterview,setAllInterview] = useState([]);
 
-   useEffect(() =>{
-        const fetchPositions = async() =>{
+
+  useEffect(() =>{
+        const fetchInterviews = async() =>{
             try {
-                const response = await api.get("interview/filter",{params:filters});
-                setAllInterviews(response.data.result);
-                console.log(allInterviews);
+                const response = await api.get("/interview/filter",{ params: filters });
+                setAllInterview(response.data.result);
+                console.log(response.data.result)
             }
             catch (error){
                 console.log("Error:",error)
             }
         }
-        fetchPositions();
-    },[])
+        fetchInterviews();
+  },[filters])
 
-    const keySelect = ["status","position","level","interviewer",]
-
+  const keySelect = [
+    {key:"status", label:"Status"},
+    {key:"positionTitle", label:"Position"},
+    {key:"level",label:"Level"}, 
+    {key:"interviewer",label:"Interviewer"}           
+  ]
 
   return (
     <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
@@ -44,10 +49,10 @@ export default function InterviewPage() {
         <div className="FilterBar flex justify-between mx-[32px] ">
             <SearchInput onChange={(value) => setSearch(value)} />
             
-            <Filters allPosition={allInterviews} keyValue={keySelect} filter={setFilters} />
+            <Filters dataTable={allInterview} keyValue={keySelect} filter={setFilters} />
         </div> 
         <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-            <TableAllInterviews Data={allInterviews} />
+            <TableAllCadidates Data={allInterview} />
         </div>
     </div>
   );

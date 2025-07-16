@@ -23,7 +23,7 @@ export default function Dashboard(){
      useEffect(() =>{
         const fetchPositions = async() =>{
             try {
-                const response = await api.get("/position/all",{params:filters});
+                const response = await api.get("/position/filter",{params:filters});
                 setAllPositions(response.data.result);
             }
             catch (error){
@@ -32,10 +32,8 @@ export default function Dashboard(){
         }
         fetchPositions();
     },[filters])
-
     const keySelect = [
         {key:"status", label:"Status"},
-        {key:"title", label:"Position"},
         {key:"level",label:"Level"},  
         {key:"location",label:"Locations"}
     ]
@@ -73,7 +71,7 @@ export default function Dashboard(){
             <div className="FilterBar flex justify-between mx-[32px] ">
                 <SearchInput onChange={(value) => setSearch(value)} />
                 
-                <Filters allPosition={allPosition} keyValue={keySelect} filter={setFilters} />
+                <Filters dataTable={allPosition} keyValue={keySelect} filter={setFilters} />
             </div>      
             <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
                 <TableAllPosition Data={allPosition}/>
