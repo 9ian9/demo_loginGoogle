@@ -64,7 +64,7 @@ export default function CandidatePage() {
             
             <Filters dataTable={allCandidate} keyValue={keySelect} filter={setFilters} />
         </div> 
-        <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
+        <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1] m-2">
             <TableDisplay data={allCandidate} transForm={TransFormCandidates} renderMap={renderMap} />
         </div>
     </div>
