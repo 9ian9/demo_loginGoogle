@@ -35,16 +35,16 @@ export default function CandidatePage() {
   },[filters])
 
   const keySelect = [
-    {key:"status", label:"Status"},
+    {key:"interviewRound", label:"Status"},
     {key:"positionTitle", label:"Position"},
-    {key:"level",label:"Level"}, 
-    {key:"interviewer",label:"Interviewer"}           
+    {key:"positionLevel", label:"Level"}, 
+    {key:"interviewerJob", label:"Interviewer"}           
   ]
 
     const renderMap = [
         { key: 'information', title: 'Name', width: 300, render: (data) => <InfoItem data={data} /> },
         { key: 'interviewer', render: (data) => <InfoItem data={data} />, width: 200},
-        { key: 'interviewerRound',title: 'Status', width: 150, render: (interviewRound) => <StatusItem status={interviewRound} /> },
+        { key: 'interviewRound',title: 'Status', width: 150, render: (interviewRound) => <StatusItem status={interviewRound} /> },
         { key: 'scheduledTime', title: 'Schedule', render: (date) => ChangeDateDisplay(date, true) },
         { key: 'positionTitle', title: 'Position'},
         { key: 'positionLevel', title: 'Level'}
