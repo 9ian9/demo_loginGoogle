@@ -35,7 +35,7 @@ export default function CandidatePage() {
   },[filters])
 
   const keySelect = [
-    {key:"status", label:"Status"},
+    {key:"interviewRound", label:"Status"},
     {key:"positionTitle", label:"Position"},
     {key:"positionLevel",label:"Level"}, 
     {key:"interviewerName",label:"Interviewer"}           
