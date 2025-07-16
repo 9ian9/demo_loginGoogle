@@ -5,10 +5,15 @@ import Card from "@/components/recruitment/Card";
 import ItemCount from "@/components/recruitment/ItemCount";
 import Filters from "@/components/filterBar/Filters";
 import SearchInput from "@/components/filterBar/SearchInput";
-import TableAllPosition from "@/components/recruitment/TableAllPosition";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/axiosInstance";
+
+import TableDisplay from "@/components/table/TableDisplay";
+import { TransFormPositions } from "@/components/recruitment/TransFormPositions";
+import { InfoItem } from "@/components/table/InfoItem";
+import { StatusItem } from "@/components/table/StatusItem";
+import { ChangeDateDisplay } from "@/components/table/ChangeDateDisplay";
 
 export default function Dashboard(){
 
@@ -37,6 +42,13 @@ export default function Dashboard(){
         {key:"level",label:"Level"},  
         {key:"location",label:"Locations"}
     ]
+
+    const renderMap = [
+        { key: 'position', width: 350, render: (data) => <InfoItem data={data} />},
+        { key: 'status', width: 100, render: (status) => <StatusItem status={status} />},
+        { key: 'deadline', render: (date) => ChangeDateDisplay(date)},
+        { key: 'numberOfApplicants', width: 200}
+    ];
     
     return (
         <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
@@ -74,7 +86,7 @@ export default function Dashboard(){
                 <Filters dataTable={allPosition} keyValue={keySelect} filter={setFilters} />
             </div>      
             <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-                <TableAllPosition Data={allPosition}/>
+                <TableDisplay data={allPosition} transForm={TransFormPositions} renderMap={renderMap} />
             </div>
         </div>
     );

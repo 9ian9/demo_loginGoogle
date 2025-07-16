@@ -3,17 +3,22 @@
 import { useState, useEffect } from 'react';
 import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
 import ItemCount from "@/components/recruitment/ItemCount";
-import TableAllCadidates from '@/components/candidates/TableAllCandidates';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
+
+import TableDisplay from '@/components/table/TableDisplay';
+import { TransFormCandidates } from '@/components/candidates/TransformCandidates';
+import { InfoItem } from '@/components/table/InfoItem';
+import { StatusItem } from '@/components/table/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
+import { SourceItem } from '@/components/table/SourceItem';
 
 export default function CandidatePage() {
   const title = "All Candidates";
   const description = "Manage your candidates and detail here.";
   const [filters, setFilters] = useState({});
   const [allCandidate,setAllCandidate] = useState([]);
-
 
   useEffect(() =>{
         const fetchCandidates = async() =>{
@@ -34,6 +39,15 @@ export default function CandidatePage() {
     {key:"positionTitle", label:"Position"},
     {key:"level",label:"Level"},            
   ]
+  
+  const renderMap = [
+    { key: 'information', title: 'Name', width: 350, render: (data) => <InfoItem data={data} /> },
+    { key: 'status', width: 100, render: (status) => <StatusItem status={status} /> },
+    { key: 'applicationDate', title: 'Date applies', render: (date) => ChangeDateDisplay(date) },
+    { key: 'numberOfApplicants', width: 200 },
+    { key: 'source', title: 'From', render: (source) => <SourceItem source={source} />},
+    { key: 'positionTitle', title: 'Position'}
+];
 
   return (
     <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
@@ -51,7 +65,7 @@ export default function CandidatePage() {
             <Filters dataTable={allCandidate} keyValue={keySelect} filter={setFilters} />
         </div> 
         <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-            <TableAllCadidates Data={allCandidate} />
+            <TableDisplay data={allCandidate} transForm={TransFormCandidates} renderMap={renderMap} />
         </div>
     </div>
   );
