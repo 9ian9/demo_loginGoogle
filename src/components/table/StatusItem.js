@@ -1,8 +1,8 @@
 'use client'
-import { Badge } from 'antd';
+
 import { useEffect, useState } from 'react';
 
-function StatusItem({status}){
+ export function StatusItem({status}){
     const [classStatus, setClassStatus] = useState('');
     useEffect(() => {
         function changeStatus(){
@@ -51,4 +51,3 @@ function StatusItem({status}){
         </span>
     )
 }
-export default StatusItem;

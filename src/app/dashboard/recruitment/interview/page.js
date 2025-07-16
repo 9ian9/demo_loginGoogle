@@ -3,10 +3,15 @@
 import { useState, useEffect } from 'react';
 import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
 import ItemCount from "@/components/recruitment/ItemCount";
-import TableAllCadidates from '@/components/candidates/TableAllCandidates';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
+
+import TableDisplay from '@/components/table/TableDisplay';
+import { TransFormInterviews } from '@/components/interview/TransFormInterviews';
+import { InfoItem } from '@/components/table/InfoItem';
+import { StatusItem } from '@/components/table/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
 
 export default function CandidatePage() {
   const title = "All Interview";
@@ -36,6 +41,15 @@ export default function CandidatePage() {
     {key:"interviewer",label:"Interviewer"}           
   ]
 
+    const renderMap = [
+        { key: 'information', title: 'Name', width: 300, render: (data) => <InfoItem data={data} /> },
+        { key: 'interviewer', render: (data) => <InfoItem data={data} />, width: 200},
+        { key: 'interviewerRound',title: 'Status', width: 150, render: (interviewRound) => <StatusItem status={interviewRound} /> },
+        { key: 'scheduledTime', title: 'Schedule', render: (date) => ChangeDateDisplay(date, true) },
+        { key: 'positionTitle', title: 'Position'},
+        { key: 'positionLevel', title: 'Level'}
+    ];
+
   return (
     <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
         <BreakCrumbs />
@@ -52,7 +66,7 @@ export default function CandidatePage() {
             <Filters dataTable={allInterview} keyValue={keySelect} filter={setFilters} />
         </div> 
         <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-            <TableAllCadidates Data={allInterview} />
+            <TableDisplay data={allInterview} transForm={TransFormInterviews} renderMap={renderMap} />
         </div>
     </div>
   );
