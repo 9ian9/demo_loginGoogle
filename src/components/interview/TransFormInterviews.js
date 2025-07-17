@@ -1,5 +1,5 @@
 export function TransFormInterviews(data, classMainText, classSubText){
-    return data.map(({ candidateName, candidateResumeUrl, positionTitle, positionLevel, interviewerName, interviewerJob, interviewerRound, scheduledTime, id }) => ({
+    return data.map(({ candidateName, candidateResumeUrl, positionTitle, positionLevel, interviewerName, interviewerJob, interviewRound, scheduledTime, id }) => ({
         information: {
             mainText: candidateName,
             subText: candidateResumeUrl,
@@ -16,7 +16,7 @@ export function TransFormInterviews(data, classMainText, classSubText){
             classSubText: "text-sm"
         },
         scheduledTime,
-        interviewerRound, 
+        interviewRound, 
         id
     }));
 }

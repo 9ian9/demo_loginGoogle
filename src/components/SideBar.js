@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
-function SideBar() {
+function SideBar({className}) {
   const pathname = usePathname();
   const [imageUser, setImageUser] = useState('');
   const [username, setUsername] = useState('');
@@ -94,7 +94,7 @@ function SideBar() {
   };
 
   return (
-    <div className="w-60 h-screen flex flex-col border-r-1 border-[#E3E8EF] justify-between text-sm">
+    <div className={`${className} h-screen flex flex-col border-r-1 border-[#E3E8EF] justify-between text-sm`}>
       <div className="flex flex-col gap-6 pt-6">
         <div className="py-1 px-6">
           <Image src={ImageLogo} width={40} height={40} alt='logo' />

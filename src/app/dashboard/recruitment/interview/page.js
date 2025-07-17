@@ -44,7 +44,7 @@ export default function CandidatePage() {
     const renderMap = [
         { key: 'information', title: 'Name', width: 300, render: (data) => <InfoItem data={data} /> },
         { key: 'interviewer', render: (data) => <InfoItem data={data} />, width: 200},
-        { key: 'interviewerRound',title: 'Status', width: 150, render: (interviewRound) => <StatusItem status={interviewRound} /> },
+        { key: 'interviewRound',title: 'Status', width: 150, render: (interviewRound) => <StatusItem status={interviewRound} /> },
         { key: 'scheduledTime', title: 'Schedule', render: (date) => ChangeDateDisplay(date, true) },
         { key: 'positionTitle', title: 'Position'},
         { key: 'positionLevel', title: 'Level'}
