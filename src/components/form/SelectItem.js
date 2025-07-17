@@ -1,12 +1,12 @@
-export function SelectItem({ label,objectKey,options,value, onChange }) {
+export function SelectItem({ label,keyObject,options,valueInput, onChange }) {
   return (
     <fieldset className="fieldset w-full">
         <p className="text-sm">{label}</p>
         <select
-            defaultValue={value}
-            name={objectKey}
+            value={valueInput}
+            name={keyObject}
             className="select w-full px-4 border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
-            onChange={(e)=>onChange(objectKey,e)}
+            onChange={(e)=>onChange(keyObject,e.target.value)}
         >
         {options.map((option,index) => (
           <option key={`${option}-${index}`} value={option}>
