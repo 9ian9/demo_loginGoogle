@@ -4,7 +4,7 @@ export default function Filters ({dataTable, keyValue ,filter}){
     const [selectedFilters,setSelectedFilters] =useState({});
 
     const getUniqueOptions =(key) =>{
-        return [...new Set(dataTable.map(item => item[key]))]
+        return [...new Set(dataTable.map(item => item[key]).filter(Boolean))]
     }
 
     
@@ -28,7 +28,7 @@ export default function Filters ({dataTable, keyValue ,filter}){
 
                 return (
                     <select key={`${key}-${index}`} 
-                            value= {selectedFilters[key] || ""}
+                            value= {selectedFilters[key]}
                             className="select w-auto h-auto pr-10 px-4 border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
                             onChange={(e) =>
                                         setSelectedFilters((prev) => ({

@@ -101,17 +101,24 @@
 //   );
 
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputFieldset } from './InputFieldset';
 import { SelectItem } from './SelectItem';
 
-export default function PositionInformation({ initialDataForm = {} }) {
+export default function PositionInformation({ initialDataForm = {},category }) {
+  
+  const selectOptions = {
+    status: ['Open', 'Pending', 'Closed'],
+    level: ['Intern', 'Fresher', 'Junior', 'Middle', 'Senior', 'Lead', 'Manager', 'Director'],
+    location: ['Viet Nam', 'The United States', 'New Zealand', 'Japan', 'Other'],
+  }; 
+  
   const [dataForm, setDataForm] = useState({
     title: '',
-    status: '',
-    level: '',
+    status: selectOptions.status[0],
+    level: selectOptions.level[0],
     numberOfPositions: '',
-    location: '',
+    location: selectOptions.location[0],
     deadline: '',
     jobDescription: '',
     ...initialDataForm, 
@@ -128,22 +135,10 @@ export default function PositionInformation({ initialDataForm = {} }) {
     e.preventDefault();
     console.log(dataForm)    
   }
-  const selectOptions = {
-    status: ['Open', 'Pending', 'Closed'],
-    level: ['Intern', 'Fresher', 'Junior', 'Middle', 'Senior', 'Lead', 'Manager', 'Director'],
-    location: ['Viet Nam', 'The United States', 'New Zealand', 'Japan', 'Other'],
-  };
-  const levelData = {
-    title: 'Level',
-  };
-  const locationData = {
-    title: 'Locations',
-    options: ['Viet Nam', 'The United States', 'New Zealand', 'Japan', 'Other'],
-  };
 
   return (
     <form className="flex flex-col items-center justify-center px-8 w-[720px]" onSubmit={(e)=>handleSubmit(e)}>
-      <div className="flex flex-col gap-4 w-full max-w-[720px]">
+      <div className="flex flex-col gap-2 w-full max-w-[720px]">
         <div className="flex flex-col gap-2">
           <p className="text-xl font-semibold">General Information</p>
           <InputFieldset
@@ -156,16 +151,18 @@ export default function PositionInformation({ initialDataForm = {} }) {
           />
           <SelectItem
             label="Status"
-            objectKey="status"
+            keyObject="status"
+            value={ dataForm.status}
             onChange={handleOnChange}
-            option={selectOptions.status}
+            options={selectOptions.status}
           />
           <div className="flex gap-8">
             <SelectItem
               label="Level"
-              objectKey="level"
+              keyObject="level"
+              value={dataForm.level}
               onChange={handleOnChange}
-              option={selectOptions.level}
+              options={selectOptions.level}
             />
             <InputFieldset
               type="number"
@@ -179,9 +176,10 @@ export default function PositionInformation({ initialDataForm = {} }) {
           <div className="flex gap-8">
             <SelectItem
               label="Locations"
-              objectKey="location"
+              keyObject="location"
+              value={dataForm.location}
               onChange={handleOnChange}
-              option={selectOptions.location}
+              options={selectOptions.location}
             />
             <InputFieldset
               type="date"
@@ -192,18 +190,22 @@ export default function PositionInformation({ initialDataForm = {} }) {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-4">
-           <p className="text-2xl font-semibold">Job Description</p>
-           <input
-             type="text"
-             className="input w-full border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
-             placeholder="Type here"
-             onChange={(e) => handleOnChange("jobDescription", e.target.value)}
-           />
+        <div className="flex flex-col gap-2">
+          <p className="text-xl font-semibold">Job Description</p>
+          <textarea
+            rows={5}
+            className="flex-1 input w-full border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
+            placeholder="Type here"
+            onChange={(e) => handleOnChange("jobDescription", e.target.value)}
+          />
         </div>
-        <button type="submit" className="btn bg-[rgb(12,55,108)] px-3 py-1.5 rounded-lg text-[#C7D2FE] font-medium">
-            Create New Position
-        </button>
+        <div className='flex gap-1.5'> 
+          <button className="btn bg-[#F3F4F6] px-3 py-1.5 rounded-lg text-black font-medium w-[65px]">Cancel
+          </button>
+          <button type="submit" className="btn bg-[rgb(12,55,108)] px-3 py-1.5 rounded-lg text-[#fcfcfc] font-medium w-[65px]">{category}
+          </button>
+        </div>
+        
       </div>
     </form>
   );
