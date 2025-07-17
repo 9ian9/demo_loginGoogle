@@ -19,6 +19,7 @@ export default function CandidatePage() {
   const description = "Manage your candidates and detail here.";
   const [filters, setFilters] = useState({});
   const [allCandidate,setAllCandidate] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() =>{
         const fetchCandidates = async() =>{

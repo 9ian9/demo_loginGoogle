@@ -18,6 +18,7 @@ export default function CandidatePage() {
   const description = "Manage your candidates and detail here.";
   const [filters, setFilters] = useState({});
   const [allInterview,setAllInterview] = useState([]);
+  const [search, setSearch] = useState('');
 
 
   useEffect(() =>{

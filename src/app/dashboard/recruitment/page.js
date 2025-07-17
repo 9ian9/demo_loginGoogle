@@ -20,6 +20,7 @@ export default function Dashboard(){
     const router = useRouter();   
     const [allPosition,setAllPositions] = useState([]);
     const [filters,setFilters]=useState({});
+    const [search, setSearch] = useState('');
 
     const hanldCreateFormButton = () => {
         router.push('/dashboard/recruitment/createform');
