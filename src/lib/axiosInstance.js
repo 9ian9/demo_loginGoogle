@@ -3,45 +3,42 @@ import Link from 'next/link';
 import { API_BASE_URL } from './config';
 
 const api = axios.create({
-  baseURL: API_BASE_URL+'/'
+  baseURL: API_BASE_URL + '/',
 });
 
 api.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem('accessToken');
-  if (accessToken){
+  if (accessToken) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
   }
   return config;
 });
 
 api.interceptors.response.use(
-  response => response,
-  async err => {
+  (response) => response,
+  async (err) => {
     const originalRequest = err.config;
 
-    if (err.response?.status === 401 ){
-
-      try{
+    if (err.response?.status === 401) {
+      try {
         const refreshTokenOld = localStorage.getItem('refreshToken');
-        if (!refreshTokenOld) throw new Error("refresh token not available");
+        if (!refreshTokenOld) throw new Error('refresh token not available');
 
         const res = await axios.post(`${API_BASE_URL}/auth/refresh`, {
-          refreshToken: refreshTokenOld
+          refreshToken: refreshTokenOld,
         });
 
         const { accessToken, refreshToken } = res.data;
-        console.log("accsessToken new", accessToken);
-        console.log("refreshToken new", refreshToken);
+        console.log('accsessToken new', accessToken);
+        console.log('refreshToken new', refreshToken);
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
         return api(originalRequest);
-
-      } catch(refreshError){
-
-        console.log("Refresh token expired - redirecting to login");
+      } catch (refreshError) {
+        console.log('Refresh token expired - redirecting to login');
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         window.location.href = '/login';
@@ -51,7 +48,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(err);
-  }
+  },
 );
 
 export default api;

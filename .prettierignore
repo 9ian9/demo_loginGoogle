@@ -1,0 +1,11 @@
+.eslintrc.js
+.prettierrc
+.vscode/
+backup/
+eslint.config.mjs
+jsconfig.json
+next.config.mjs
+package-lock.json
+package.json
+postcss.config.mjs
+README.md
