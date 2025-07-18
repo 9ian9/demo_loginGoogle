@@ -1,9 +1,9 @@
 "use client";
 
-import { GOOGLE_CLIENT_ID, REDIRECT_URI } from "@/lib/config";
+import { GOOGLE_CLIENT_ID, REDIRECT_URI } from '@/lib/config';
 export default function LoginWithGoogle() {
   function getAuthUrl() {
-    const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
+    const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
 
     const options = {
       redirect_uri: REDIRECT_URI,

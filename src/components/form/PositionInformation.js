@@ -1,31 +1,31 @@
-"use client";
-import { useEffect, useState } from "react";
-import { InputFieldset } from "./InputFieldset";
-import { SelectItem } from "./SelectItem";
-import api from "@/lib/axiosInstance";
+'use client';
+import { useEffect, useState } from 'react';
+import { InputFieldset } from './InputFieldset';
+import { SelectItem } from './SelectItem';
+import api from '@/lib/axiosInstance';
 export default function PositionInformation({
   initialDataForm = {},
   category,
 }) {
-  console.log("date", initialDataForm);
+  console.log('date', initialDataForm);
   const selectOptions = {
-    status: ["Open", "Pending", "Closed"],
+    status: ['Open', 'Pending', 'Closed'],
     level: [
-      "Intern",
-      "Fresher",
-      "Junior",
-      "Middle",
-      "Senior",
-      "Lead",
-      "Manager",
-      "Director",
+      'Intern',
+      'Fresher',
+      'Junior',
+      'Middle',
+      'Senior',
+      'Lead',
+      'Manager',
+      'Director',
     ],
     location: [
-      "Viet Nam",
-      "The United States",
-      "New Zealand",
-      "Japan",
-      "Other",
+      'Viet Nam',
+      'The United States',
+      'New Zealand',
+      'Japan',
+      'Other',
     ],
   };
 
@@ -35,8 +35,8 @@ export default function PositionInformation({
     level: selectOptions.level[0],
     numberOfPositions: "",
     location: selectOptions.location[0],
-    deadline: "",
-    jobDescription: "",
+    deadline: '',
+    jobDescription: '',
   });
   useEffect(() => {
     if (initialDataForm && Object.keys(initialDataForm).length > 0) {
@@ -66,15 +66,15 @@ export default function PositionInformation({
     console.log(dataForm);
     const fetchSendForm = async () => {
       try {
-        const response = await api.post("/position", dataForm);
+        const response = await api.post('/position', dataForm);
 
         if (response.status === 200 || response.status === 201) {
-          console.log("send ok");
+          console.log('send ok');
         } else {
-          console.log("Gửi không thành công:", response);
+          console.log('Gửi không thành công:', response);
         }
       } catch (error) {
-        console.error("Lỗi khi gửi form:", error);
+        console.error('Lỗi khi gửi form:', error);
       }
     };
     fetchSendForm();
@@ -144,7 +144,7 @@ export default function PositionInformation({
             className="flex-1 input w-full border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
             placeholder="Type here"
             value={dataForm.jobDescription}
-            onChange={(e) => handleOnChange("jobDescription", e.target.value)}
+            onChange={(e) => handleOnChange('jobDescription', e.target.value)}
           />
         </div>
         <div className="flex gap-1.5">

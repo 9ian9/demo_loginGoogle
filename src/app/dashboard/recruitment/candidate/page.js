@@ -15,11 +15,11 @@ import { ChangeDateDisplay } from "@/components/table/ChangeDateDisplay";
 import { SourceItem } from "@/components/table/SourceItem";
 
 export default function CandidatePage() {
-  const title = "All Candidates";
-  const description = "Manage your candidates and detail here.";
+  const title = 'All Candidates';
+  const description = 'Manage your candidates and detail here.';
   const [filters, setFilters] = useState({});
   const [allCandidate, setAllCandidate] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchCandidates = async () => {
@@ -54,13 +54,13 @@ export default function CandidatePage() {
 
   const renderMap = [
     {
-      key: "information",
-      title: "Name",
+      key: 'information',
+      title: 'Name',
       width: 350,
       render: (data) => <InfoItem data={data} />,
     },
     {
-      key: "status",
+      key: 'status',
       width: 100,
       render: (status) => <StatusItem status={status} />,
     },

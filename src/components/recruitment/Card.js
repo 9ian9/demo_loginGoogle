@@ -1,6 +1,6 @@
-"use client";
-import Link from "next/link";
-import ItemCount from "./ItemCount";
+'use client';
+import Link from 'next/link';
+import ItemCount from './ItemCount';
 
 export default function Card() {
   return (
@@ -8,12 +8,12 @@ export default function Card() {
       <CardItem
         title="All Candidates"
         href="/dashboard/recruitment/candidate"
-        quantity={<ItemCount category={"totalCandidates"} />}
+        quantity={<ItemCount category={'totalCandidates'} />}
       />
       <CardItem
         title="Interview"
         href="/dashboard/recruitment/interview"
-        quantity={<ItemCount category={"totalInterviews"} />}
+        quantity={<ItemCount category={'totalInterviews'} />}
       />
     </div>
   );

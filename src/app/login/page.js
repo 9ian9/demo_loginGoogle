@@ -9,7 +9,7 @@ import LoginWithGoogle from "@/components/login/LoginWithGoogle";
 function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const error = searchParams.get("error");
+  const error = searchParams.get('error');
 
   const [checking, setChecking] = useState(true);
 

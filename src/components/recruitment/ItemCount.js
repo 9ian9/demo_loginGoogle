@@ -1,6 +1,6 @@
-"use client";
-import { useState, useEffect } from "react";
-import api from "@/lib/axiosInstance";
+'use client';
+import { useState, useEffect } from 'react';
+import api from '@/lib/axiosInstance';
 
 export default function ItemCount({ category }) {
   const [count, setCount] = useState(null);
@@ -8,7 +8,7 @@ export default function ItemCount({ category }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/dashboard/counts");
+        const response = await api.get('/dashboard/counts');
         setCount(response.data.result[category]);
       } catch (error) {
         setError(error.message);

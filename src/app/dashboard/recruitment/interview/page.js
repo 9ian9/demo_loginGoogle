@@ -14,8 +14,8 @@ import { StatusItem } from "@/components/table/StatusItem";
 import { ChangeDateDisplay } from "@/components/table/ChangeDateDisplay";
 
 export default function CandidatePage() {
-  const title = "All Interview";
-  const description = "Manage your candidates and detail here.";
+  const title = 'All Interview';
+  const description = 'Manage your candidates and detail here.';
   const [filters, setFilters] = useState({});
   const [allInterview, setAllInterview] = useState([]);
   const [search, setSearch] = useState("");

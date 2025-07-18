@@ -1,8 +1,8 @@
 "use client";
 
-import { convertKeyToTitle } from "./ConvertKeyToTitle";
-import { useState, useEffect } from "react";
-import { Table } from "antd";
+import { convertKeyToTitle } from './ConvertKeyToTitle';
+import { useState, useEffect } from 'react';
+import { Table } from 'antd';
 
 function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
   const [tableData, setTableData] = useState([]);

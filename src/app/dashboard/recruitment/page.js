@@ -9,11 +9,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/axiosInstance";
 
-import TableDisplay from "@/components/table/TableDisplay";
-import { TransFormPositions } from "@/components/recruitment/TransFormPositions";
-import { InfoItem } from "@/components/table/InfoItem";
-import { StatusItem } from "@/components/table/StatusItem";
-import { ChangeDateDisplay } from "@/components/table/ChangeDateDisplay";
+import TableDisplay from '@/components/table/TableDisplay';
+import { TransFormPositions } from '@/components/recruitment/TransFormPositions';
+import { InfoItem } from '@/components/table/InfoItem';
+import { StatusItem } from '@/components/table/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
 
 export default function Dashboard() {
   const router = useRouter();

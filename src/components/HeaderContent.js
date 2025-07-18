@@ -1,5 +1,5 @@
-"use client";
-import { usePathname, useRouter } from "next/navigation";
+'use client';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function HeaderContent({ title, description }) {
   return (
@@ -16,11 +16,11 @@ export function BreakCrumbs() {
   const pathName = usePathname();
   const router = useRouter();
 
-  const segments = pathName.split("/").filter(Boolean);
-  const parentPaths = "/" + segments.slice(0, -1).join("/");
+  const segments = pathName.split('/').filter(Boolean);
+  const parentPaths = '/' + segments.slice(0, -1).join('/');
 
   const handleClick = () => {
-    if (parentPaths !== "/") {
+    if (parentPaths !== '/') {
       router.push(parentPaths);
     }
   };
