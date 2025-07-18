@@ -22,7 +22,7 @@ export default function Dashboard() {
   const [search, setSearch] = useState('');
 
   const hanldCreateFormButton = () => {
-    router.push('/dashboard/recruitment/createform');
+    router.push('/dashboard/recruitment/position/newposition');
   };
 
   useEffect(() => {
