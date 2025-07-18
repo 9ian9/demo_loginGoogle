@@ -24,17 +24,27 @@ export default function CandidatePage() {
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const response = await api.get('/candidate/filter', {
-          params: filters,
-        });
-        setAllCandidate(response.data.result);
-        console.log(response.data.result);
+        let response;
+
+        if (search && search.trim() !== '') {
+          response = await api.get('/candidate/search', {
+            params: { searchRequest: search },
+          });
+        } else {
+          response = await api.get('/candidate/filter', {
+            params: filters,
+          });
+        }
+
+        setAllCandidate(response.data.result || []);
+        console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
-        console.log('Error:', error);
+        console.error('Error fetching candidates:', error);
       }
     };
+
     fetchCandidates();
-  }, [filters]);
+  }, [filters, search]);
 
   const keySelect = [
     { key: 'status', label: 'Status' },

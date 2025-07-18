@@ -4,7 +4,7 @@ import { convertKeyToTitle } from './ConvertKeyToTitle';
 import { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
-function TableDisplay({ data = [], transForm, renderMap = [] }) {
+function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
   const [tableData, setTableData] = useState([]);
   const classMainText = 'text-base font-semibold';
   const classSubText = 'text-sm text-[#0091FF]';
@@ -52,6 +52,13 @@ function TableDisplay({ data = [], transForm, renderMap = [] }) {
       pagination={false}
       sticky={true}
       className="custom-table"
+      onRow={(record) => ({
+        onClick: () => {
+          if (onClick) {
+            onClick(record.id);
+          }
+        },
+      })}
     />
   );
 }

@@ -39,4 +39,5 @@ body {
 }
 .custom-table .ant-table-content table {
   table-layout: auto !important;
+  cursor: pointer;
 }

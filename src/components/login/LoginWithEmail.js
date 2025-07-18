@@ -14,7 +14,11 @@ export default function LoginForm() {
 
   const classLoginDefault =
     'input border-1 focus-within:ring-1 focus-within:border-none focus-within:outline-none focus-within:shadow-none input w-100 h-12 py-3.5 px-4 rounded-[8]';
-  const classLogin = `${classLoginDefault} ${isLoginFailed ? 'border-red-500 focus-within:ring-red-500' : 'focus-within:ring-gray-300'}`;
+  const classLogin = `${classLoginDefault} ${
+    isLoginFailed
+      ? 'border-red-500 focus-within:ring-red-500'
+      : 'focus-within:ring-gray-300'
+  }`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +45,7 @@ export default function LoginForm() {
 
   const toggleClickSignIn = async (emailInput, passwordInput) => {
     try {
-      const res = await api.post('http://172.16.8.126:8088/auth/local', {
+      const res = await api.post('auth/local', {
         email: emailInput,
         password: passwordInput,
       });

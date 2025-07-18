@@ -21,19 +21,29 @@ export default function CandidatePage() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const fetchInterviews = async () => {
+    const fetchCandidates = async () => {
       try {
-        const response = await api.get('/interview/filter', {
-          params: filters,
-        });
-        setAllInterview(response.data.result);
-        console.log(response.data.result);
+        let response;
+
+        if (search && search.trim() !== '') {
+          response = await api.get('/interview/search', {
+            params: { searchRequest: search },
+          });
+        } else {
+          response = await api.get('/interview/filter', {
+            params: filters,
+          });
+        }
+
+        setAllInterview(response.data.result || []);
+        console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
-        console.log('Error:', error);
+        console.error('Error fetching candidates:', error);
       }
     };
-    fetchInterviews();
-  }, [filters]);
+
+    fetchCandidates();
+  }, [filters, search]);
 
   const keySelect = [
     { key: 'interviewRound', label: 'Status' },

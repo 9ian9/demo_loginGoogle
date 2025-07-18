@@ -5,6 +5,12 @@ import { API_BASE_URL } from './config';
 const api = axios.create({
   baseURL: API_BASE_URL + '/',
 });
+// const api = axios.create({
+//   baseURL: '/api/',
+//   headers: {
+//     'ngrok-skip-browser-warning': 'true'  // ✅ Thêm header này
+//   }
+// });
 
 api.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem('accessToken');
@@ -29,11 +35,13 @@ api.interceptors.response.use(
         });
 
         const { accessToken, refreshToken } = res.data;
-        console.log('accsessToken new', accessToken);
-        console.log('refreshToken new', refreshToken);
+        console.log('accsessToken', accessToken);
+        console.log('refreshToken', refreshToken);
 
         localStorage.setItem('accessToken', accessToken);
+        localStorage.getItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
+        localStorage.getItem('refreshToken', refreshToken);
 
         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
         return api(originalRequest);

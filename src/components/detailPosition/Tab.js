@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import DetailInformation from './DetailInformation';
-import ApplyForm from './ApplyForm';
+import ApplyForm from './ApplyForm.js';
 import Candidates from './Candidates';
 import Interview from './Interview';
 import Completed from './Completed';

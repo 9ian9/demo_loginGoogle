@@ -6,3 +6,19 @@ const nextConfig = {
 };
 
 export default nextConfig;
+//** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   images: {
+//     domains: ['photo.znews.vn'],
+//   },
+//   async rewrites() {
+//     return [
+//       {
+//         source: '/api/:path*',
+//         destination: 'https://7f05d9f51384.ngrok-free.app/:path*',
+//       },
+//     ];
+//   },
+// };
+
+// export default nextConfig;

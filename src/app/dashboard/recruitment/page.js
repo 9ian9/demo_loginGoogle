@@ -20,22 +20,37 @@ export default function Dashboard() {
   const [allPosition, setAllPositions] = useState([]);
   const [filters, setFilters] = useState({});
   const [search, setSearch] = useState('');
+  const [id, setId] = useState();
 
   const hanldCreateFormButton = () => {
     router.push('/dashboard/recruitment/position/newposition');
   };
 
   useEffect(() => {
-    const fetchPositions = async () => {
+    const fetchCandidates = async () => {
       try {
-        const response = await api.get('/position/filter', { params: filters });
-        setAllPositions(response.data.result);
+        let response;
+
+        if (search && search.trim() !== '') {
+          response = await api.get('/position/search', {
+            params: { searchRequest: search },
+          });
+        } else {
+          response = await api.get('/position/filter', {
+            params: filters,
+          });
+        }
+
+        setAllPositions(response.data.result || []);
+        console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
-        console.log('Error:', error);
+        console.error('Error fetching candidates:', error);
       }
     };
-    fetchPositions();
-  }, [filters]);
+
+    fetchCandidates();
+  }, [filters, search]);
+
   const keySelect = [
     { key: 'status', label: 'Status' },
     { key: 'level', label: 'Level' },
@@ -100,6 +115,9 @@ export default function Dashboard() {
           data={allPosition}
           transForm={TransFormPositions}
           renderMap={renderMap}
+          onClick={(id) =>
+            router.push(`/dashboard/recruitment/detailposition/${id}`)
+          }
         />
       </div>
     </div>
