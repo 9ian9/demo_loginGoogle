@@ -1,5 +1,5 @@
-"use client";
-import { useState, useEffect } from "react";
+'use client';
+import { useState, useEffect } from 'react';
 export default function Filters({ dataTable, keyValue, filter }) {
   const [selectedFilters, setSelectedFilters] = useState({});
 
@@ -9,7 +9,7 @@ export default function Filters({ dataTable, keyValue, filter }) {
 
   const handleFilterClick = () => {
     filter(selectedFilters);
-    console.log("selectedFilter ", selectedFilters);
+    console.log('selectedFilter ', selectedFilters);
   };
 
   const handleReset = () => {

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import HeaderContent from "@/components/HeaderContent";
-import Card from "@/components/recruitment/Card";
-import ItemCount from "@/components/recruitment/ItemCount";
-import Filters from "@/components/filterBar/Filters";
-import SearchInput from "@/components/filterBar/SearchInput";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import api from "@/lib/axiosInstance";
+import HeaderContent from '@/components/HeaderContent';
+import Card from '@/components/recruitment/Card';
+import ItemCount from '@/components/recruitment/ItemCount';
+import Filters from '@/components/filterBar/Filters';
+import SearchInput from '@/components/filterBar/SearchInput';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import api from '@/lib/axiosInstance';
 
 import TableDisplay from '@/components/table/TableDisplay';
 import { TransFormPositions } from '@/components/recruitment/TransFormPositions';
@@ -19,11 +19,11 @@ export default function Dashboard() {
   const router = useRouter();
   const [allPosition, setAllPositions] = useState([]);
   const [filters, setFilters] = useState({});
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [id, setId] = useState();
 
   const hanldCreateFormButton = () => {
-    router.push("/dashboard/recruitment/createform");
+    router.push('/dashboard/recruitment/createform');
   };
 
   useEffect(() => {
@@ -31,20 +31,20 @@ export default function Dashboard() {
       try {
         let response;
 
-        if (search && search.trim() !== "") {
-          response = await api.get("/position/search", {
+        if (search && search.trim() !== '') {
+          response = await api.get('/position/search', {
             params: { searchRequest: search },
           });
         } else {
-          response = await api.get("/position/filter", {
+          response = await api.get('/position/filter', {
             params: filters,
           });
         }
 
         setAllPositions(response.data.result || []);
-        console.log("Fetched Candidates:", response.data.result);
+        console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
-        console.error("Error fetching candidates:", error);
+        console.error('Error fetching candidates:', error);
       }
     };
 
@@ -52,20 +52,20 @@ export default function Dashboard() {
   }, [filters, search]);
 
   const keySelect = [
-    { key: "status", label: "Status" },
-    { key: "level", label: "Level" },
-    { key: "location", label: "Locations" },
+    { key: 'status', label: 'Status' },
+    { key: 'level', label: 'Level' },
+    { key: 'location', label: 'Locations' },
   ];
 
   const renderMap = [
-    { key: "position", width: 350, render: (data) => <InfoItem data={data} /> },
+    { key: 'position', width: 350, render: (data) => <InfoItem data={data} /> },
     {
-      key: "status",
+      key: 'status',
       width: 100,
       render: (status) => <StatusItem status={status} />,
     },
-    { key: "deadline", render: (date) => ChangeDateDisplay(date) },
-    { key: "numberOfApplicants", width: 200 },
+    { key: 'deadline', render: (date) => ChangeDateDisplay(date) },
+    { key: 'numberOfApplicants', width: 200 },
   ];
 
   return (
@@ -83,7 +83,7 @@ export default function Dashboard() {
             <p className="text-2xl font-bold">All position</p>
 
             <div className="badge badge-md border-[#374151] float-left">
-              <ItemCount category={"totalPositions"} /> items
+              <ItemCount category={'totalPositions'} /> items
             </div>
           </div>
           <p className="text-[#374151] text-xs">

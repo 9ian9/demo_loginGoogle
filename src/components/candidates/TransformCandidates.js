@@ -24,6 +24,6 @@ export function TransFormCandidates(data, classMainText, classSubText) {
       score,
       status,
       id,
-    })
+    }),
   );
 }

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { convertKeyToTitle } from './ConvertKeyToTitle';
 import { useState, useEffect } from 'react';
@@ -6,8 +6,8 @@ import { Table } from 'antd';
 
 function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
   const [tableData, setTableData] = useState([]);
-  const classMainText = "text-base font-semibold";
-  const classSubText = "text-sm text-[#0091FF]";
+  const classMainText = 'text-base font-semibold';
+  const classSubText = 'text-sm text-[#0091FF]';
 
   useEffect(() => {
     const fetchData = () => {
@@ -15,7 +15,7 @@ function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
         const transformed = transForm(data, classMainText, classSubText);
         setTableData(transformed);
       } catch (err) {
-        console.error("Error fetching mock data:", err);
+        console.error('Error fetching mock data:', err);
       }
     };
     fetchData();
@@ -24,7 +24,7 @@ function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
   const dynamicColumns = tableData[0]
     ? Object.keys(tableData[0])
         .filter(
-          (key) => key !== "id" && key !== "index" && key !== "description"
+          (key) => key !== 'id' && key !== 'index' && key !== 'description',
         )
         .map((key) => {
           let column = {

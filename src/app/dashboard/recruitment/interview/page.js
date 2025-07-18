@@ -1,44 +1,44 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
-import ItemCount from "@/components/recruitment/ItemCount";
-import Filters from "@/components/filterBar/Filters";
-import SearchInput from "@/components/filterBar/SearchInput";
-import api from "@/lib/axiosInstance";
+import { useState, useEffect } from 'react';
+import HeaderContent, { BreakCrumbs } from '@/components/HeaderContent';
+import ItemCount from '@/components/recruitment/ItemCount';
+import Filters from '@/components/filterBar/Filters';
+import SearchInput from '@/components/filterBar/SearchInput';
+import api from '@/lib/axiosInstance';
 
-import TableDisplay from "@/components/table/TableDisplay";
-import { TransFormInterviews } from "@/components/interview/TransFormInterviews";
-import { InfoItem } from "@/components/table/InfoItem";
-import { StatusItem } from "@/components/table/StatusItem";
-import { ChangeDateDisplay } from "@/components/table/ChangeDateDisplay";
+import TableDisplay from '@/components/table/TableDisplay';
+import { TransFormInterviews } from '@/components/interview/TransFormInterviews';
+import { InfoItem } from '@/components/table/InfoItem';
+import { StatusItem } from '@/components/table/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
 
 export default function CandidatePage() {
   const title = 'All Interview';
   const description = 'Manage your candidates and detail here.';
   const [filters, setFilters] = useState({});
   const [allInterview, setAllInterview] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
         let response;
 
-        if (search && search.trim() !== "") {
-          response = await api.get("/interview/search", {
+        if (search && search.trim() !== '') {
+          response = await api.get('/interview/search', {
             params: { searchRequest: search },
           });
         } else {
-          response = await api.get("/interview/filter", {
+          response = await api.get('/interview/filter', {
             params: filters,
           });
         }
 
         setAllInterview(response.data.result || []);
-        console.log("Fetched Candidates:", response.data.result);
+        console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
-        console.error("Error fetching candidates:", error);
+        console.error('Error fetching candidates:', error);
       }
     };
 
@@ -46,37 +46,37 @@ export default function CandidatePage() {
   }, [filters, search]);
 
   const keySelect = [
-    { key: "interviewRound", label: "Status" },
-    { key: "positionTitle", label: "Position" },
-    { key: "positionLevel", label: "Level" },
-    { key: "interviewerName", label: "Interviewer" },
+    { key: 'interviewRound', label: 'Status' },
+    { key: 'positionTitle', label: 'Position' },
+    { key: 'positionLevel', label: 'Level' },
+    { key: 'interviewerName', label: 'Interviewer' },
   ];
 
   const renderMap = [
     {
-      key: "information",
-      title: "Name",
+      key: 'information',
+      title: 'Name',
       width: 300,
       render: (data) => <InfoItem data={data} />,
     },
     {
-      key: "interviewer",
+      key: 'interviewer',
       render: (data) => <InfoItem data={data} />,
       width: 200,
     },
     {
-      key: "interviewRound",
-      title: "Status",
+      key: 'interviewRound',
+      title: 'Status',
       width: 150,
       render: (interviewRound) => <StatusItem status={interviewRound} />,
     },
     {
-      key: "scheduledTime",
-      title: "Schedule",
+      key: 'scheduledTime',
+      title: 'Schedule',
       render: (date) => ChangeDateDisplay(date, true),
     },
-    { key: "positionTitle", title: "Position" },
-    { key: "positionLevel", title: "Level" },
+    { key: 'positionTitle', title: 'Position' },
+    { key: 'positionLevel', title: 'Level' },
   ];
 
   return (
@@ -86,7 +86,7 @@ export default function CandidatePage() {
         <HeaderContent title={title} description={description}></HeaderContent>
 
         <div className="absolute top-6 left-60 badge badge-md border-[#374151]">
-          <ItemCount category={"totalInterviews"} /> item
+          <ItemCount category={'totalInterviews'} /> item
         </div>
       </div>
       <div className="FilterBar flex justify-between mx-[32px] ">

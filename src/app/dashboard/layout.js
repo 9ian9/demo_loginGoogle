@@ -1,4 +1,4 @@
-import SideBar from "@/components/SideBar";
+import SideBar from '@/components/SideBar';
 function DashboardLayout({ children }) {
   return (
     <div className="flex h-screen w-full">

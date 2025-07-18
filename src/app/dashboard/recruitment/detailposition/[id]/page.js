@@ -1,4 +1,4 @@
-import Tabs from "@/components/detailPosition/Tab.js";
+import Tabs from '@/components/detailPosition/Tab.js';
 
 export default function DetailPosition() {
   return (

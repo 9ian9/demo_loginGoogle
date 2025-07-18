@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import DetailInformation from "./DetailInformation";
-import ApplyForm from "./ApplyForm.js";
-import Candidates from "./Candidates";
-import Interview from "./Interview";
-import Completed from "./Completed";
+import { useState } from 'react';
+import DetailInformation from './DetailInformation';
+import ApplyForm from './ApplyForm.js';
+import Candidates from './Candidates';
+import Interview from './Interview';
+import Completed from './Completed';
 
 function Tabs() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -39,7 +39,7 @@ function Tabs() {
         onChange={() => setSelectedTab(1)}
       />
       <div className="tab-content border-base-300 bg-base-100 p-10">
-        {selectedTab === 1 && <DetailInformation />}{" "}
+        {selectedTab === 1 && <DetailInformation />}{' '}
         {/* Điều kiện hiển thị nội dung Tab 1 */}
       </div>
 
@@ -53,7 +53,7 @@ function Tabs() {
         onChange={() => setSelectedTab(2)}
       />
       <div className="tab-content border-base-300 bg-base-100 p-10">
-        {selectedTab === 2 && <ApplyForm />}{" "}
+        {selectedTab === 2 && <ApplyForm />}{' '}
         {/* Điều kiện hiển thị nội dung Tab 2 */}
       </div>
 
@@ -67,7 +67,7 @@ function Tabs() {
         onChange={() => setSelectedTab(3)}
       />
       <div className="tab-content border-base-300 bg-base-100 p-10">
-        {selectedTab === 3 && <Candidates />}{" "}
+        {selectedTab === 3 && <Candidates />}{' '}
         {/* Điều kiện hiển thị nội dung Tab 3 */}
       </div>
 
@@ -81,7 +81,7 @@ function Tabs() {
         onChange={() => setSelectedTab(4)}
       />
       <div className="tab-content border-base-300 bg-base-100 p-10">
-        {selectedTab === 4 && <Interview />}{" "}
+        {selectedTab === 4 && <Interview />}{' '}
         {/* Điều kiện hiển thị nội dung Tab 4 */}
       </div>
 
@@ -95,7 +95,7 @@ function Tabs() {
         onChange={() => setSelectedTab(5)}
       />
       <div className="tab-content border-base-300 bg-base-100 p-10">
-        {selectedTab === 5 && <Completed />}{" "}
+        {selectedTab === 5 && <Completed />}{' '}
         {/* Điều kiện hiển thị nội dung Tab 5 */}
       </div>
     </div>

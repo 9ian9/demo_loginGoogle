@@ -1,60 +1,60 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function StatusItem({ status }) {
-  const [classStatus, setClassStatus] = useState("");
+  const [classStatus, setClassStatus] = useState('');
   useEffect(() => {
     function changeStatus() {
       switch (status) {
-        case "Open":
-          setClassStatus("badge badge-success badge-sm px-3 py-0.5");
+        case 'Open':
+          setClassStatus('badge badge-success badge-sm px-3 py-0.5');
           break;
-        case "Closed":
-          setClassStatus("badge bg-[#374151] text-white badge-sm px-3 py-0.5");
+        case 'Closed':
+          setClassStatus('badge bg-[#374151] text-white badge-sm px-3 py-0.5');
           break;
-        case "New":
+        case 'New':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#374151] border-[#374151]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#374151] border-[#374151]',
           );
           break;
-        case "Scan":
+        case 'Scan':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#4338CA] border-[#4338CA]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#4338CA] border-[#4338CA]',
           );
           break;
-        case "Rejected":
+        case 'Rejected':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#D1D5DB] border-[#D1D5DB]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#D1D5DB] border-[#D1D5DB]',
           );
           break;
-        case "English interview":
+        case 'English interview':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#4338CA] border-[#4338CA]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#4338CA] border-[#4338CA]',
           );
           break;
-        case "Technical interview":
+        case 'Technical interview':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 badge-warning"
+            'badge badge-outline badge-sm px-3 py-0.5 badge-warning',
           );
           break;
-        case "CEO interview":
+        case 'CEO interview':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#0EA5E9] border-[#0EA5E9]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#0EA5E9] border-[#0EA5E9]',
           );
           break;
-        case "Pass":
+        case 'Pass':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#4338CA] border-[#4338CA]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#4338CA] border-[#4338CA]',
           );
           break;
-        case "Fail":
+        case 'Fail':
           setClassStatus(
-            "badge badge-outline badge-sm px-3 py-0.5 text-[#D1D5DB] border-[#D1D5DB]"
+            'badge badge-outline badge-sm px-3 py-0.5 text-[#D1D5DB] border-[#D1D5DB]',
           );
           break;
         default:
-          setClassStatus("");
+          setClassStatus('');
           break;
       }
     }

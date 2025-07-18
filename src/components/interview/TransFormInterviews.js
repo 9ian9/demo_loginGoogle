@@ -23,11 +23,11 @@ export function TransFormInterviews(data, classMainText, classSubText) {
         mainText: interviewerName,
         subText: interviewerJob,
         classMainText: classMainText,
-        classSubText: "text-sm",
+        classSubText: 'text-sm',
       },
       scheduledTime,
       interviewRound,
       id,
-    })
+    }),
   );
 }

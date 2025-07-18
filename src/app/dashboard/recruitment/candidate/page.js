@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import HeaderContent, { BreakCrumbs } from "@/components/HeaderContent";
-import ItemCount from "@/components/recruitment/ItemCount";
-import Filters from "@/components/filterBar/Filters";
-import SearchInput from "@/components/filterBar/SearchInput";
-import api from "@/lib/axiosInstance";
+import { useState, useEffect } from 'react';
+import HeaderContent, { BreakCrumbs } from '@/components/HeaderContent';
+import ItemCount from '@/components/recruitment/ItemCount';
+import Filters from '@/components/filterBar/Filters';
+import SearchInput from '@/components/filterBar/SearchInput';
+import api from '@/lib/axiosInstance';
 
-import TableDisplay from "@/components/table/TableDisplay";
-import { TransFormCandidates } from "@/components/candidates/TransformCandidates";
-import { InfoItem } from "@/components/table/InfoItem";
-import { StatusItem } from "@/components/table/StatusItem";
-import { ChangeDateDisplay } from "@/components/table/ChangeDateDisplay";
-import { SourceItem } from "@/components/table/SourceItem";
+import TableDisplay from '@/components/table/TableDisplay';
+import { TransFormCandidates } from '@/components/candidates/TransformCandidates';
+import { InfoItem } from '@/components/table/InfoItem';
+import { StatusItem } from '@/components/table/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
+import { SourceItem } from '@/components/table/SourceItem';
 
 export default function CandidatePage() {
   const title = 'All Candidates';
@@ -26,20 +26,20 @@ export default function CandidatePage() {
       try {
         let response;
 
-        if (search && search.trim() !== "") {
-          response = await api.get("/candidate/search", {
+        if (search && search.trim() !== '') {
+          response = await api.get('/candidate/search', {
             params: { searchRequest: search },
           });
         } else {
-          response = await api.get("/candidate/filter", {
+          response = await api.get('/candidate/filter', {
             params: filters,
           });
         }
 
         setAllCandidate(response.data.result || []);
-        console.log("Fetched Candidates:", response.data.result);
+        console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
-        console.error("Error fetching candidates:", error);
+        console.error('Error fetching candidates:', error);
       }
     };
 
@@ -47,9 +47,9 @@ export default function CandidatePage() {
   }, [filters, search]);
 
   const keySelect = [
-    { key: "status", label: "Status" },
-    { key: "positionTitle", label: "Position" },
-    { key: "level", label: "Level" },
+    { key: 'status', label: 'Status' },
+    { key: 'positionTitle', label: 'Position' },
+    { key: 'level', label: 'Level' },
   ];
 
   const renderMap = [
@@ -65,17 +65,17 @@ export default function CandidatePage() {
       render: (status) => <StatusItem status={status} />,
     },
     {
-      key: "applicationDate",
-      title: "Date applies",
+      key: 'applicationDate',
+      title: 'Date applies',
       render: (date) => ChangeDateDisplay(date),
     },
-    { key: "numberOfApplicants", width: 200 },
+    { key: 'numberOfApplicants', width: 200 },
     {
-      key: "source",
-      title: "From",
+      key: 'source',
+      title: 'From',
       render: (source) => <SourceItem source={source} />,
     },
-    { key: "positionTitle", title: "Position" },
+    { key: 'positionTitle', title: 'Position' },
   ];
 
   return (
@@ -85,7 +85,7 @@ export default function CandidatePage() {
         <HeaderContent title={title} description={description}></HeaderContent>
 
         <div className="absolute top-6 left-60 badge badge-md border-[#374151]">
-          <ItemCount category={"totalCandidates"} /> item
+          <ItemCount category={'totalCandidates'} /> item
         </div>
       </div>
       <div className="FilterBar flex justify-between mx-[32px] ">

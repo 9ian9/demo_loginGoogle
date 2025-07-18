@@ -30,10 +30,10 @@ export default function PositionInformation({
   };
 
   const [dataForm, setDataForm] = useState({
-    title: "",
+    title: '',
     status: selectOptions.status[0],
     level: selectOptions.level[0],
-    numberOfPositions: "",
+    numberOfPositions: '',
     location: selectOptions.location[0],
     deadline: '',
     jobDescription: '',
@@ -43,8 +43,8 @@ export default function PositionInformation({
       const { deadline, ...rest } = initialDataForm;
 
       const formattedDeadline = deadline
-        ? new Date(deadline).toISOString().split("T")[0]
-        : "";
+        ? new Date(deadline).toISOString().split('T')[0]
+        : '';
 
       setDataForm((prev) => ({
         ...prev,
@@ -115,7 +115,7 @@ export default function PositionInformation({
               type="number"
               label="Number of position"
               keyObject="numberOfPositions"
-              valueInput={dataForm.numberOfPositions || ""}
+              valueInput={dataForm.numberOfPositions || ''}
               onChange={handleOnChange}
               placeholder="Enter number of positions"
             />
@@ -132,7 +132,7 @@ export default function PositionInformation({
               type="date"
               label="Deadline"
               keyObject="deadline"
-              valueInput={dataForm.deadline || ""}
+              valueInput={dataForm.deadline || ''}
               onChange={handleOnChange}
             />
           </div>

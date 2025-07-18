@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { GOOGLE_CLIENT_ID, REDIRECT_URI } from '@/lib/config';
 export default function LoginWithGoogle() {
@@ -8,9 +8,9 @@ export default function LoginWithGoogle() {
     const options = {
       redirect_uri: REDIRECT_URI,
       client_id: GOOGLE_CLIENT_ID,
-      response_type: "code",
-      scope: "openid email profile",
-      prompt: "login",
+      response_type: 'code',
+      scope: 'openid email profile',
+      prompt: 'login',
     };
 
     const queryParam = new URLSearchParams(options);

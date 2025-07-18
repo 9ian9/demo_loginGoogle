@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import api from "@/lib/axiosInstance"; // dùng mock nếu chưa có API thật
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import api from '@/lib/axiosInstance'; // dùng mock nếu chưa có API thật
 
 export default function DetailInformation() {
   const { id } = useParams(); // lấy ID từ URL
@@ -14,7 +14,7 @@ export default function DetailInformation() {
         const response = await api.get(`/position/${id}`);
         setPosition(response.data.result);
       } catch (error) {
-        console.error("Failed to fetch position:", error);
+        console.error('Failed to fetch position:', error);
       }
     };
 

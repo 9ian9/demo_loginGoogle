@@ -3,7 +3,7 @@ export function InputFieldset({
   label,
   keyObject,
   valueInput,
-  placeHolder = "Type here",
+  placeHolder = 'Type here',
   onChange,
 }) {
   return (
