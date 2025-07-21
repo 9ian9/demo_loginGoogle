@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Alice Johnson",
+    "resumeUrl": "Alice Johnson-cv.pdf",
+    "applicationDate": "02/21/2025",
+    "source": "Link Source",
+    "score": "89",
+    "status": "New"
+  },
+  {
+    "name": "Michael Brown",
+    "resumeUrl": "Michael Brown-cv.pdf",
+    "applicationDate": "02/22/2025",
+    "source": "Form",
+    "score": "82",
+    "status": "Scan"
+  },
+  {
+    "name": "Emma Wilson",
+    "resumeUrl": "Emma Wilson-cv.pdf",
+    "applicationDate": "02/23/2025",
+    "source": "Link Source",
+    "score": "88",
+    "status": "Scan"
+  },
+  {
+    "name": "Olivia Davis",
+    "resumeUrl": "Olivia Davis-cv.pdf",
+    "applicationDate": "02/24/2025",
+    "source": "Form",
+    "score": "95",
+    "status": "Scan"
+  },
+  {
+    "name": "Liam Miller",
+    "resumeUrl": "Liam Miller-cv.pdf",
+    "applicationDate": "02/25/2025",
+    "source": "Link Source",
+    "score": "60",
+    "status": "Rejected"
+  },
+  {
+    "name": "Sophia Garcia",
+    "resumeUrl": "Sophia Garcia-cv.pdf",
+    "applicationDate": "02/26/2025",
+    "source": "Form",
+    "score": "90",
+    "status": "Scan"
+  },
+  {
+    "name": "James Rodriguez",
+    "resumeUrl": "James Rodriguez-cv.pdf",
+    "applicationDate": "02/27/2025",
+    "source": "Link Source",
+    "score": "72",
+    "status": "Scan"
+  },
+  {
+    "name": "Ava Martinez",
+    "resumeUrl": "Ava Martinez-cv.pdf",
+    "applicationDate": "02/28/2025",
+    "source": "Link Source",
+    "score": "75",
+    "status": "Scan"
+  },
+  {
+    "name": "Lucas Hernandez",
+    "resumeUrl": "Lucas Hernandez-cv.pdf",
+    "applicationDate": "03/01/2025",
+    "source": "Link Source",
+    "score": "68",
+    "status": "Scan"
+  }
+]

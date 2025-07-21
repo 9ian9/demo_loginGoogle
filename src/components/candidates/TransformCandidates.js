@@ -1,29 +1,37 @@
 export function TransFormCandidates(data, classMainText, classSubText) {
-  return data.map(
-    ({
+  return data.map((item) => {
+    const {
       name,
       resumeUrl,
-      positionTitle,
-      level,
       applicationDate,
       source,
       score,
       status,
       id,
-    }) => ({
+      level,
+      positionTitle,
+    } = item;
+
+    const transformed = {
       information: {
         mainText: name,
         subText: resumeUrl,
-        classMainText: classMainText,
-        classSubText: classSubText,
+        classMainText,
+        classSubText,
       },
-      positionTitle,
-      level,
+    };
+
+    if (positionTitle) transformed.positionTitle = positionTitle;
+    if (level) transformed.level = level;
+
+    return {
+      ...transformed,
       applicationDate,
       source,
       score,
       status,
       id,
-    }),
-  );
+    };
+  });
 }
+

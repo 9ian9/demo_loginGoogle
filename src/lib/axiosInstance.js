@@ -2,15 +2,15 @@ import axios from 'axios';
 import Link from 'next/link';
 import { API_BASE_URL } from './config';
 
-const api = axios.create({
-  baseURL: API_BASE_URL + '/',
-});
 // const api = axios.create({
-//   baseURL: '/api/',
-//   headers: {
-//     'ngrok-skip-browser-warning': 'true'  // ✅ Thêm header này
-//   }
+//   baseURL: API_BASE_URL + '/',
 // });
+const api = axios.create({
+  baseURL: '/api/',
+  headers: {
+    'ngrok-skip-browser-warning': 'true'  // ✅ Thêm header này
+  }
+});
 
 api.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem('accessToken');
