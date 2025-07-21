@@ -25,7 +25,7 @@ export default function Dashboard() {
   const [id, setId] = useState();
 
   const hanldCreateFormButton = () => {
-    router.push('/dashboard/recruitment/createform');
+    router.push('/dashboard/recruitment/position/newposition');
   };
 
   useEffect(() => {
