@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import api from '@/lib/axiosInstance';
 import LoginWithEmail from '@/components/login/LoginWithEmail';
 import LoginWithGoogle from '@/components/login/LoginWithGoogle';
+import { CONFIG } from '@/lib/config';
 
 function Login() {
   const router = useRouter();
@@ -25,7 +26,7 @@ function Login() {
 
       if (refreshToken) {
         try {
-          const res = await api.post('http://172.16.8.126:8088/auth/refresh', {
+          const res = await api.post(`${CONFIG.API_BASE_URL}/auth/refresh`, {
             refreshToken: refreshToken,
           });
           const { accessToken, refreshToken: newRefresh } = res.data.result;

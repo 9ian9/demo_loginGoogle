@@ -1,16 +1,14 @@
 import axios from 'axios';
-import Link from 'next/link';
-import { API_BASE_URL } from './config';
-
-const api = axios.create({
-  baseURL: API_BASE_URL + '/',
-});
+import { CONFIG } from './config';
 // const api = axios.create({
-//   baseURL: '/api/',
-//   headers: {
-//     'ngrok-skip-browser-warning': 'true'  // ✅ Thêm header này
-//   }
+//   baseURL: CONFIG.API_BASE_URL + '/',
 // });
+const api = axios.create({
+  baseURL: '/api/',
+  headers: {
+    'ngrok-skip-browser-warning': 'true', // ✅ Thêm header này
+  },
+});
 
 api.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem('accessToken');
@@ -30,7 +28,7 @@ api.interceptors.response.use(
         const refreshTokenOld = localStorage.getItem('refreshToken');
         if (!refreshTokenOld) throw new Error('refresh token not available');
 
-        const res = await axios.post(`${API_BASE_URL}/auth/refresh`, {
+        const res = await axios.post(`${CONFIG.API_BASE_URL}/auth/refresh`, {
           refreshToken: refreshTokenOld,
         });
 
