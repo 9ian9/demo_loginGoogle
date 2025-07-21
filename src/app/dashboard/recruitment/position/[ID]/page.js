@@ -1,7 +1,6 @@
 'use client';
 
 import Tabs from '@/components/detailPosition/Tab';
-import { fakePositions } from '@/components/fakePositionData';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { EditButton } from '@/components/detailPosition/EditButton';

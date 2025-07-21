@@ -1,13 +1,14 @@
 'use client';
 
-import { GOOGLE_CLIENT_ID, REDIRECT_URI } from '@/lib/config';
+import { CONFIG } from '@/lib/config';
+
 export default function LoginWithGoogle() {
   function getAuthUrl() {
     const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
 
     const options = {
-      redirect_uri: REDIRECT_URI,
-      client_id: GOOGLE_CLIENT_ID,
+      redirect_uri: CONFIG.REDIRECT_URI,
+      client_id: CONFIG.GOOGLE_CLIENT_ID,
       response_type: 'code',
       scope: 'openid email profile',
       prompt: 'login',

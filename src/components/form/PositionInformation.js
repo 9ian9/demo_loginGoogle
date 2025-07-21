@@ -2,32 +2,28 @@
 import { useEffect, useState } from 'react';
 import { InputFieldset } from './InputFieldset';
 import { SelectItem } from './SelectItem';
-import api from '@/lib/axiosInstance';
+const selectOptions = {
+  status: ['Open', 'Pending', 'Closed'],
+  level: [
+    'Intern',
+    'Fresher',
+    'Junior',
+    'Middle',
+    'Senior',
+    'Lead',
+    'Manager',
+    'Director',
+  ],
+  location: ['Viet Nam', 'The United States', 'New Zealand', 'Japan', 'Other'],
+};
+
 export default function PositionInformation({
   initialDataForm = {},
   category,
+  onSubmit,
+  onCancel,
 }) {
-  console.log('date', initialDataForm);
-  const selectOptions = {
-    status: ['Open', 'Pending', 'Closed'],
-    level: [
-      'Intern',
-      'Fresher',
-      'Junior',
-      'Middle',
-      'Senior',
-      'Lead',
-      'Manager',
-      'Director',
-    ],
-    location: [
-      'Viet Nam',
-      'The United States',
-      'New Zealand',
-      'Japan',
-      'Other',
-    ],
-  };
+  const isCreateMode = category?.toLowerCase() === 'create';
 
   const [dataForm, setDataForm] = useState({
     title: '',
@@ -36,8 +32,11 @@ export default function PositionInformation({
     numberOfPositions: '',
     location: selectOptions.location[0],
     deadline: '',
-    jobDescription: '',
+    description: '',
   });
+
+  const [changedData, setChangedData] = useState({});
+
   useEffect(() => {
     if (initialDataForm && Object.keys(initialDataForm).length > 0) {
       const { deadline, ...rest } = initialDataForm;
@@ -59,25 +58,23 @@ export default function PositionInformation({
       ...prev,
       [keyObject]: inputValue,
     }));
+    if (!isCreateMode) {
+      setChangedData((prev) => ({
+        ...prev,
+        [keyObject]: inputValue,
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(dataForm);
-    const fetchSendForm = async () => {
-      try {
-        const response = await api.post('/position', dataForm);
+    const dataToSubmit = category === 'Create' ? dataForm : changedData;
+    onSubmit(dataToSubmit);
+  };
 
-        if (response.status === 200 || response.status === 201) {
-          console.log('send ok');
-        } else {
-          console.log('Gửi không thành công:', response);
-        }
-      } catch (error) {
-        console.error('Lỗi khi gửi form:', error);
-      }
-    };
-    fetchSendForm();
+  const handleCancel = (e) => {
+    e.preventDefault();
+    onCancel();
   };
 
   return (
@@ -148,7 +145,10 @@ export default function PositionInformation({
           />
         </div>
         <div className="flex gap-1.5">
-          <button className="btn bg-[#F3F4F6] px-3 py-1.5 rounded-lg text-black font-medium w-[65px]">
+          <button
+            className="btn bg-[#F3F4F6] px-3 py-1.5 rounded-lg text-black font-medium w-[65px]"
+            onClick={(e) => handleCancel(e)}
+          >
             Cancel
           </button>
           <button

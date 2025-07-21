@@ -15,8 +15,6 @@ import { InfoItem } from '@/components/table/InfoItem';
 import { StatusItem } from '@/components/table/StatusItem';
 import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
 
-import { fakePositions } from '@/components/fakePositionData'; // import thêm
-
 export default function Dashboard() {
   const router = useRouter();
   const [allPosition, setAllPositions] = useState([]);
