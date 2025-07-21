@@ -13,7 +13,7 @@ import { BreakCrumbs } from '@/components/HeaderContent';
 export default function DetailPosition() {
   const router = useRouter();
   const params = useParams();
-  const rawID = params.ID;
+  const rawID = params.id;
   const id = Array.isArray(rawID) ? rawID[0] : rawID;
   const [position, setPosition] = useState(null);
   const [status, setStatus] = useState('');

@@ -87,7 +87,7 @@ export default function Candidates() {
         />
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1] m-2">
+      <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1] m-2">
         <TableDisplay
           data={allCandidate}
           transForm={TransFormCandidates}
