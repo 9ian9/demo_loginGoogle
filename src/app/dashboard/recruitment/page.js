@@ -15,6 +15,8 @@ import { InfoItem } from '@/components/table/InfoItem';
 import { StatusItem } from '@/components/table/StatusItem';
 import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
 
+import { fakePositions } from '@/components/fakePositionData'; // import thêm
+
 export default function Dashboard() {
   const router = useRouter();
   const [allPosition, setAllPositions] = useState([]);
@@ -115,9 +117,7 @@ export default function Dashboard() {
           data={allPosition}
           transForm={TransFormPositions}
           renderMap={renderMap}
-          onClick={(id) =>
-            router.push(`/dashboard/recruitment/detailposition/${id}`)
-          }
+          onClick={(id) => router.push(`/dashboard/recruitment/position/${id}`)}
         />
       </div>
     </div>
