@@ -115,9 +115,7 @@ export default function Dashboard() {
           data={allPosition}
           transForm={TransFormPositions}
           renderMap={renderMap}
-          onClick={(id) =>
-            router.push(`/dashboard/recruitment/detailposition/${id}`)
-          }
+          onClick={(id) => router.push(`/dashboard/recruitment/position/${id}`)}
         />
       </div>
     </div>

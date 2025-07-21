@@ -5,11 +5,14 @@ import { useState, useEffect } from 'react';
 import api from '@/lib/axiosInstance';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import PopupModal from '@/components/form/popupModal';
+
 export default function FormPosition() {
   const [detailPosition, setDetailPosition] = useState();
   const { id: positionID } = useParams();
   const router = useRouter();
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [formKey, setFormKey] = useState(0);
   useEffect(() => {
     const fetchDataForm = async () => {
       try {
@@ -35,15 +38,32 @@ export default function FormPosition() {
       console.log('Error updating position: ', error);
     }
   };
+  const handleBack = () => {
+    setIsOpen(false);
+  };
+  const handleCancel = () => {
+    setIsOpen(true);
+  };
+  const handleConfirm = () => {
+    setIsOpen(false);
+    setFormKey((prev) => prev + 1);
+  };
   return (
     <div className="flex flex-col w-full pt-4">
       <BreakCrumbs />
       <HeaderContent title={'Details Position'} description={''} />
+      <PopupModal
+        isOpen={isOpen}
+        onBack={handleBack}
+        onConfirm={handleConfirm}
+      />
       <div className="flex justify-center mt-3">
         <PositionInformation
+          key={formKey}
           initialDataForm={detailPosition}
           category="Update"
           onSubmit={handleUpdate}
+          onCancel={handleCancel}
         />
       </div>
     </div>
