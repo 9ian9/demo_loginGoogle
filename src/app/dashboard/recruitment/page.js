@@ -2,7 +2,7 @@
 
 import HeaderContent from '@/components/HeaderContent';
 import Card from '@/components/recruitment/Card';
-import ItemCount from '@/components/recruitment/ItemCount';
+import ItemCount from '@/components/common/ItemCount';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import { useState, useEffect } from 'react';

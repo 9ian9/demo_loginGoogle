@@ -1,6 +1,6 @@
 'use client';
 
-import { API_BASE_URL } from '@/lib/config';
+import { CONFIG } from '@/lib/config';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -16,7 +16,7 @@ export default function GoogleCallbackPage() {
     const exchangeCode = async () => {
       try {
         const response = await fetch(
-          API_BASE_URL + `/auth/google?code=${encodeURIComponent(code)}`,
+          CONFIG.API_BASE_URL + `/auth/google?code=${encodeURIComponent(code)}`,
           {
             method: 'POST',
           },

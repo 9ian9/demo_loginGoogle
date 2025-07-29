@@ -12,7 +12,7 @@ export default function HeaderContent({ title, description }) {
   );
 }
 
-export function BreakCrumbs() {
+export function BreakCrumbs({ popup, onExit }) {
   const pathName = usePathname();
   const router = useRouter();
 
@@ -20,8 +20,10 @@ export function BreakCrumbs() {
   const parentPaths = '/' + segments.slice(0, -1).join('/');
 
   const handleClick = () => {
-    if (parentPaths !== '/') {
+    if (parentPaths !== '/' && popup !== true) {
       router.push(parentPaths);
+    } else {
+      onExit();
     }
   };
   return (
