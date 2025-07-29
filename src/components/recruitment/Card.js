@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import ItemCount from './ItemCount';
+import ItemCount from '../common/ItemCount';
 
 export default function Card() {
   return (

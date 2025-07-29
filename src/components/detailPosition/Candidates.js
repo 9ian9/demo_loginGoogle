@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import HeaderContent, { BreakCrumbs } from '@/components/HeaderContent';
+import ItemCount from '../common/ItemCount';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';

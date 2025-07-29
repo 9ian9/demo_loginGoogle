@@ -5,14 +5,15 @@ import { useState, useEffect } from 'react';
 import api from '@/lib/axiosInstance';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import PopupModal from '@/components/form/popupModal';
-
+import PopupModal from '@/components/form/PopupModal.js';
 export default function FormPosition() {
   const [detailPosition, setDetailPosition] = useState();
   const { id: positionID } = useParams();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [formKey, setFormKey] = useState(0);
+  const [actionType, setActionType] = useState(null);
+
   useEffect(() => {
     const fetchDataForm = async () => {
       try {
@@ -27,11 +28,7 @@ export default function FormPosition() {
 
   const handleUpdate = async (dataUpdate) => {
     try {
-      console.log(dataUpdate);
-      const response = await api.patch(
-        `/position/${positionID}`,
-        dataUpdate,
-      );
+      const response = await api.patch(`/position/${positionID}`, dataUpdate);
       if (response.status === 200 || response.status === 201) {
         router.push(`/dashboard/recruitment/position/${positionID}`);
       }
@@ -39,23 +36,31 @@ export default function FormPosition() {
       console.log('Error updating position: ', error);
     }
   };
-  const handleBack = () => {
+  const handlePopupBack = () => {
     setIsOpen(false);
   };
   const handleCancel = () => {
     setIsOpen(true);
+    setActionType('cancel');
   };
   const handleConfirm = () => {
+    if (actionType !== 'cancel') {
+      router.push(`/dashboard/recruitment/position/${positionID}`);
+    }
     setIsOpen(false);
     setFormKey((prev) => prev + 1);
   };
+  const handleExit = () => {
+    setIsOpen(true);
+    setActionType('back');
+  };
   return (
     <div className="flex flex-col w-full pt-4">
-      <BreakCrumbs />
+      <BreakCrumbs popup={true} onExit={handleExit} />
       <HeaderContent title={'Details Position'} description={''} />
       <PopupModal
         isOpen={isOpen}
-        onBack={handleBack}
+        onBack={handlePopupBack}
         onConfirm={handleConfirm}
       />
       <div className="flex justify-center mt-3">

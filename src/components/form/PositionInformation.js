@@ -27,10 +27,10 @@ export default function PositionInformation({
 
   const [dataForm, setDataForm] = useState({
     title: '',
-    status: selectOptions.status[0],
+    location: selectOptions.location[0],
     level: selectOptions.level[0],
     numberOfPositions: '',
-    location: selectOptions.location[0],
+    status: selectOptions.status[0],
     deadline: '',
     description: '',
   });
@@ -137,11 +137,12 @@ export default function PositionInformation({
         <div className="flex flex-col gap-2">
           <p className="text-xl font-semibold">Job Description</p>
           <textarea
+            required
             rows={5}
             className="flex-1 input w-full border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
             placeholder="Type here"
-            value={dataForm.jobDescription}
-            onChange={(e) => handleOnChange('jobDescription', e.target.value)}
+            value={dataForm.description}
+            onChange={(e) => handleOnChange('description', e.target.value)}
           />
         </div>
         <div className="flex gap-1.5">
