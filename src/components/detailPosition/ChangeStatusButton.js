@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function ChangeStatusButton({ onchange, statusData }) {
   const [status, setStatus] = useState(statusData);
@@ -7,6 +7,9 @@ export function ChangeStatusButton({ onchange, statusData }) {
     const value = e.target?.dataset?.value;
     if (value) onchange(value);
   };
+  useEffect(() => {
+    setStatus(statusData);
+  }, [statusData]);
   return (
     <div className="dropdown dropdown-end">
       <div

@@ -4,10 +4,7 @@ import { useState } from 'react';
 import api from '@/lib/axiosInstance';
 
 export default function ApplyForm({ jobId }) {
-  const [questions, setQuestions] = useState([
-    { question: 'Full name' },
-    { question: 'Github profile' },
-  ]);
+  const [questions, setQuestions] = useState([]);
   const [googleFormLink, setGoogleFormLink] = useState('');
   const [linkToForm, setLinkToForm] = useState(false);
 
@@ -57,7 +54,7 @@ export default function ApplyForm({ jobId }) {
             <label className="font-medium text-sm">Link to form</label>
             <input
               type="checkbox"
-              className="toggle"
+              className="toggle bg-gray-200 toggle-[#374151]"
               checked={linkToForm}
               onChange={(e) => setLinkToForm(e.target.checked)}
             />
