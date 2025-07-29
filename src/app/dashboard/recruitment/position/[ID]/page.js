@@ -35,7 +35,7 @@ export default function DetailPosition() {
     const updateStatus = async() => {
       try{
         const res = await api.patch(`/position/${id}`,{ status: status});
-
+        
       } catch (err){
         console.error(`Can't update status: ${err}`);
       }
@@ -94,7 +94,7 @@ export default function DetailPosition() {
       </div>
 
       <div className="flex-1 min-h-0 overflow-hidden">
-        <Tabs data={position} />
+        <Tabs data={position} id={id} />
       </div>
     </div>
   );

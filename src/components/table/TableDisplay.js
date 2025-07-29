@@ -51,7 +51,7 @@ function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
       rowKey={(record) => record.id}
       pagination={false}
       sticky={true}
-      className="custom-table"
+      className="custom-table cursor-pointer"
       onRow={(record) => ({
         onClick: () => {
           if (onClick) {

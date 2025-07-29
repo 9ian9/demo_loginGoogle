@@ -1,34 +1,5 @@
 export function TransFormInterviews(data, classMainText, classSubText) {
   return data.map((item) => {
-    // const {
-    //   candidateName,
-    //   candidateResumeUrl,
-    //   positionTitle,
-    //   positionLevel,
-    //   interviewerName,
-    //   interviewerJob,
-    //   interviewRound,
-    //   scheduledTime,
-    //   id,
-    // }) => ({
-    //   information: {
-    //     mainText: candidateName,
-    //     subText: candidateResumeUrl,
-    //     classMainText: classMainText,
-    //     classSubText: classSubText,
-    //   },
-    //   positionTitle,
-    //   positionLevel,
-    //   interviewer: {
-    //     mainText: interviewerName,
-    //     subText: interviewerJob,
-    //     classMainText: classMainText,
-    //     classSubText: 'text-sm',
-    //   },
-    //   scheduledTime,
-    //   interviewRound,
-    //   id,
-    // };
     const {
       candidateName,
       candidateResumeUrl,
@@ -38,6 +9,8 @@ export function TransFormInterviews(data, classMainText, classSubText) {
       interviewerJob,
       interviewRound,
       scheduledTime,
+      note,
+      completed,
       id,
     } = item;
 
@@ -63,6 +36,8 @@ export function TransFormInterviews(data, classMainText, classSubText) {
       },
       scheduledTime,
       interviewRound,
+      ...(note && { note }),
+      ...(completed && {completed}),
       id,
     };
   });

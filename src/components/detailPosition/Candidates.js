@@ -1,8 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import HeaderContent, { BreakCrumbs } from '@/components/HeaderContent';
-import ItemCount from '@/components/recruitment/ItemCount';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
@@ -77,7 +75,7 @@ export default function Candidates() {
     },
   ];
   return (
-    <div className="flex flex-col gap-4 flex-1 min-h-0 pt-4 pb-4 overflow-hidden">
+    <div className="flex flex-col gap-4 min-h-0 h-full pt-4 pb-4 overflow-hidden">
       <div className="FilterBar flex justify-between mx-[32px]">
         <SearchInput onChange={(value) => setSearch(value)} />
         <Filters

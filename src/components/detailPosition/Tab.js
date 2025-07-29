@@ -7,7 +7,7 @@ import Candidates from './Candidates';
 import Interview from './Interview';
 import Completed from './Completed';
 
-function Tabs({ data }) {
+function Tabs({ data, id }) {
   const [selectedTab, setSelectedTab] = useState(1);
 
   const renderTabContent = () => {
@@ -15,7 +15,7 @@ function Tabs({ data }) {
       case 1:
         return <DetailInformation data={data} />;
       case 2:
-        return <ApplyForm data={data} />;
+        return <ApplyForm jobId={id} />;
       case 3:
         return <Candidates data={data} />;
       case 4:
@@ -32,7 +32,7 @@ function Tabs({ data }) {
       <div className="relative px-8">
         <div className="absolute left-8 right-8 bottom-0 h-[2px] bg-gray-200 z-0" />
         <div className="flex gap-8 relative z-10 pl-3">
-          {['Detail Information', 'Apply form', 'Candidates', 'Interview'].map(
+          {['Detail Information', 'Apply form', 'Candidates', 'Interview', 'Completed'].map(
             (label, idx) => (
               <button
                 key={label}

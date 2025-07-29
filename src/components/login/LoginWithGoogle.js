@@ -14,6 +14,8 @@ export default function LoginWithGoogle() {
       prompt: 'login',
     };
 
+    console.log(options);
+
     const queryParam = new URLSearchParams(options);
     return `${rootUrl}?${queryParam.toString()}`;
   }

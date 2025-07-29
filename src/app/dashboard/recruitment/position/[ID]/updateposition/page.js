@@ -27,8 +27,9 @@ export default function FormPosition() {
 
   const handleUpdate = async (dataUpdate) => {
     try {
+      console.log(dataUpdate);
       const response = await api.patch(
-        `/position/update/${positionID}`,
+        `/position/${positionID}`,
         dataUpdate,
       );
       if (response.status === 200 || response.status === 201) {

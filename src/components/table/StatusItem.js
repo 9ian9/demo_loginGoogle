@@ -53,6 +53,11 @@ export function StatusItem({ status }) {
             'badge badge-outline badge-sm px-3 py-0.5 text-[#D1D5DB] border-[#D1D5DB]',
           );
           break;
+        case 'Pending':
+          setClassStatus(
+            'badge badge-sm px-3 py-0.5 badge-warning text-white',
+          );
+          break;
         default:
           setClassStatus('');
           break;

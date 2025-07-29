@@ -180,12 +180,15 @@ function SideBar({ className }) {
           </div>
         </Link>
         <div className="flex pl-2 pr-8 pt-6 gap-4 border-t-1 border-[#E3E8EF]">
-          <img
+          <Image
             src={
               imageUser ||
               'https://photo.znews.vn/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg'
             }
-            className="w-8 h-8 rounded-full"
+            className="rounded-full"
+            width={32}
+            height={32}
+            alt="imageUser"
           />
           <div className="flex flex-col justify-center">
             <p className="text-sm text-[#1F2937] font-medium">{username}</p>
