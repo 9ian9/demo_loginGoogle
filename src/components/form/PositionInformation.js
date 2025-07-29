@@ -141,7 +141,7 @@ export default function PositionInformation({
             rows={5}
             className="flex-1 input w-full border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
             placeholder="Type here"
-            value={dataForm.jobDescription}
+            value={dataForm.description}
             onChange={(e) => handleOnChange('description', e.target.value)}
           />
         </div>
