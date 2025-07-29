@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { CONFIG } from './config';
-// const api = axios.create({
-//   baseURL: CONFIG.API_BASE_URL + '/',
-// });
 const api = axios.create({
-  baseURL: '/api/',
-  headers: {
-    'ngrok-skip-browser-warning': 'true', // ✅ Thêm header này
-  },
+  baseURL: CONFIG.API_BASE_URL + '/',
 });
+// const api = axios.create({
+//   baseURL: '/api/',
+//   headers: {
+//     'ngrok-skip-browser-warning': 'true', // ✅ Thêm header này
+//   },
+// });
 
 api.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem('accessToken');

@@ -28,10 +28,7 @@ export default function FormPosition() {
 
   const handleUpdate = async (dataUpdate) => {
     try {
-      const response = await api.patch(
-        `/position/update/${positionID}`,
-        dataUpdate,
-      );
+      const response = await api.patch(`/position/${positionID}`, dataUpdate);
       if (response.status === 200 || response.status === 201) {
         router.push(`/dashboard/recruitment/position/${positionID}`);
       }

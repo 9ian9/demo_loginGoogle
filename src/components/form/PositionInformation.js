@@ -142,7 +142,7 @@ export default function PositionInformation({
             className="flex-1 input w-full border-[#D1D5DB] rounded-md focus-within:border-[#D1D5DB] focus-within:outline-none focus-within:ring-gray-300"
             placeholder="Type here"
             value={dataForm.jobDescription}
-            onChange={(e) => handleOnChange('jobDescription', e.target.value)}
+            onChange={(e) => handleOnChange('description', e.target.value)}
           />
         </div>
         <div className="flex gap-1.5">
