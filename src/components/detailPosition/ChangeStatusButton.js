@@ -3,10 +3,7 @@ import { useState, useEffect } from 'react';
 
 export function ChangeStatusButton({ onchange, statusData }) {
   const [status, setStatus] = useState(statusData);
-  const hanldeSelect = (e) => {
-    const value = e.target?.dataset?.value;
-    if (value) onchange(value);
-  };
+ 
   useEffect(() => {
     setStatus(statusData);
   }, [statusData]);
@@ -34,7 +31,6 @@ export function ChangeStatusButton({ onchange, statusData }) {
       <ul
         tabIndex={0}
         className="dropdown-content menu bg-base-100 rounded-box z-1 w-25 p-2 shadow-sm"
-        onClick={hanldeSelect}
       >
         <li>
           <a

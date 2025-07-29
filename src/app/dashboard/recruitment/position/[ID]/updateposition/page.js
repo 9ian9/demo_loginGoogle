@@ -17,7 +17,7 @@ export default function FormPosition() {
   useEffect(() => {
     const fetchDataForm = async () => {
       try {
-        const response = await api.get(`/position/${positionID}`);
+        const response = await api.get(`/positions/${positionID}`);
         setDetailPosition(response.data.result);
       } catch (error) {
         console.log('Error fetching position details:', error);
@@ -28,7 +28,7 @@ export default function FormPosition() {
 
   const handleUpdate = async (dataUpdate) => {
     try {
-      const response = await api.patch(`/position/${positionID}`, dataUpdate);
+      const response = await api.patch(`/positions/${positionID}`, dataUpdate);
       if (response.status === 200 || response.status === 201) {
         router.push(`/dashboard/recruitment/position/${positionID}`);
       }

@@ -32,11 +32,11 @@ export default function Dashboard() {
         let response;
 
         if (search && search.trim() !== '') {
-          response = await api.get('/position/search', {
+          response = await api.get('/positions/search', {
             params: { searchRequest: search },
           });
         } else {
-          response = await api.get('/position/filter', {
+          response = await api.get('/positions/filter', {
             params: filters,
           });
         }

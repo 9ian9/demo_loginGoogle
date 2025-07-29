@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import api from '@/lib/axiosInstance';
+import { InputFieldset } from '../form/InputFieldset';
 
 export default function ApplyForm({ jobId }) {
   const [questions, setQuestions] = useState([]);
@@ -70,10 +71,11 @@ export default function ApplyForm({ jobId }) {
                 placeholder="Type your question"
                 className="border p-2 mb-2 w-full"
               />
+              // <InputFieldset />
             ))}
             <button
               onClick={handleAddQuestion}
-              className="bg-gray-100 px-3 py-1.5 rounded-lg gap-2 flex items-center w-auto"
+              className="bg-gray-100 px-3 py-1.5 rounded-lg gap-2 flex items-center"
             >
               <svg
                 width="18"

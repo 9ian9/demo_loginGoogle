@@ -13,7 +13,7 @@ export default function FormPosition() {
 
   const handleCreate = async (dataForm) => {
     try {
-      const response = await api.post('/position', dataForm);
+      const response = await api.post('/positions', dataForm);
 
       if (response.status === 200 || response.status === 201) {
         const positionID = response.data.result;

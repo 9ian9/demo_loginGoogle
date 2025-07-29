@@ -15,13 +15,13 @@ export default function DetailPosition() {
   const rawID = params.id;
   const id = Array.isArray(rawID) ? rawID[0] : rawID;
   const [position, setPosition] = useState(null);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         console.log('ID: ', id);
-        const res = await api.get(`/position/${id}`);
+        const res = await api.get(`/positions/${id}`);
         setPosition(res.data.result);
         setStatus(res.data.result.status);
       } catch (err) {
@@ -34,7 +34,7 @@ export default function DetailPosition() {
   useEffect(() =>{
     const updateStatus = async() => {
       try{
-        const res = await api.patch(`/position/${id}`,{ status: status});
+        const res = await api.patch(`/positions/${id}`,{ status: status});
         
       } catch (err){
         console.error(`Can't update status: ${err}`);
