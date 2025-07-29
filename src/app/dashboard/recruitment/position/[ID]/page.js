@@ -31,6 +31,18 @@ export default function DetailPosition() {
     fetchData();
   }, [id]);
 
+  useEffect(() =>{
+    const updateStatus = async() => {
+      try{
+        const res = await api.patch(`/position/${id}`,{ status: status});
+
+      } catch (err){
+        console.error(`Can't update status: ${err}`);
+      }
+    }
+    updateStatus();
+  }, [status])
+
   const hanldEditButton = () => {
     router.push(`/dashboard/recruitment/position/${id}/updateposition`);
   };

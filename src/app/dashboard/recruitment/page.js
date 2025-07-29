@@ -74,9 +74,7 @@ export default function Dashboard() {
         title="Recruitment"
         description="Track, manage and forecast your recruitment and candidate"
       />
-
       <Card />
-
       <div className="flex justify-between mx-[32px]">
         <div>
           <div className="flex gap-4 items-center">
