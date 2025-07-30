@@ -7,11 +7,9 @@ import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
 
-import TableDisplay from '@/components/table/TableDisplay';
-import { TransFormInterviews } from '@/components/interview/TransFormInterviews';
-import { InfoItem } from '@/components/table/InfoItem';
-import { StatusItem } from '@/components/table/StatusItem';
-import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
+import Table from '@/components/table/Table';
+import { FormatInterviewsData } from '@/components/interview/FormatInterviewsData';
+import { GetColumnsFromData } from '@/components/table/GetColumnsFromData';
 
 export default function CandidatePage() {
   const title = 'All Interview';
@@ -35,7 +33,8 @@ export default function CandidatePage() {
           });
         }
 
-        setAllInterview(response.data.result || []);
+        const formatData = FormatInterviewsData(response.data.result);
+        setAllInterview(formatData);
         console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
         console.error('Error fetching candidates:', error);
@@ -52,32 +51,7 @@ export default function CandidatePage() {
     { key: 'interviewerName', label: 'Interviewer' },
   ];
 
-  const renderMap = [
-    {
-      key: 'information',
-      title: 'Name',
-      width: 300,
-      render: (data) => <InfoItem data={data} />,
-    },
-    {
-      key: 'interviewer',
-      render: (data) => <InfoItem data={data} />,
-      width: 200,
-    },
-    {
-      key: 'interviewRound',
-      title: 'Status',
-      width: 150,
-      render: (interviewRound) => <StatusItem status={interviewRound} />,
-    },
-    {
-      key: 'scheduledTime',
-      title: 'Schedule',
-      render: (date) => ChangeDateDisplay(date, true),
-    },
-    { key: 'positionTitle', title: 'Position' },
-    { key: 'positionLevel', title: 'Level' },
-  ];
+  const columns = GetColumnsFromData(allInterview);
 
   return (
     <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
@@ -99,10 +73,9 @@ export default function CandidatePage() {
         />
       </div>
       <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-        <TableDisplay
-          data={allInterview}
-          transForm={TransFormInterviews}
-          renderMap={renderMap}
+        <Table
+          dataSource={allInterview}
+          columns={columns}
         />
       </div>
     </div>

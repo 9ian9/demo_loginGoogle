@@ -7,12 +7,9 @@ import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
 
-import TableDisplay from '@/components/table/TableDisplay';
-import { TransFormCandidates } from '@/components/candidates/TransformCandidates';
-import { InfoItem } from '@/components/table/InfoItem';
-import { StatusItem } from '@/components/table/StatusItem';
-import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
-import { SourceItem } from '@/components/table/SourceItem';
+import { FormatCandidatesData } from '@/components/candidates/FormatCandidatesData';
+import { GetColumnsFromData } from '@/components/table/GetColumnsFromData';
+import Table from '@/components/table/Table';
 
 export default function CandidatePage() {
   const title = 'All Candidates';
@@ -36,7 +33,8 @@ export default function CandidatePage() {
           });
         }
 
-        setAllCandidate(response.data.result || []);
+        const formatData = FormatCandidatesData(response.data.result);
+        setAllCandidate(formatData);
         console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
         console.error('Error fetching candidates:', error);
@@ -52,31 +50,7 @@ export default function CandidatePage() {
     { key: 'level', label: 'Level' },
   ];
 
-  const renderMap = [
-    {
-      key: 'information',
-      title: 'Name',
-      width: 350,
-      render: (data) => <InfoItem data={data} />,
-    },
-    {
-      key: 'status',
-      width: 100,
-      render: (status) => <StatusItem status={status} />,
-    },
-    {
-      key: 'applicationDate',
-      title: 'Date applies',
-      render: (date) => ChangeDateDisplay(date),
-    },
-    { key: 'numberOfApplicants', width: 200 },
-    {
-      key: 'source',
-      title: 'From',
-      render: (source) => <SourceItem source={source} />,
-    },
-    { key: 'positionTitle', title: 'Position' },
-  ];
+  const columns = GetColumnsFromData(allCandidate);
 
   return (
     <div className="flex flex-col gap-4 h-screen pt-4 pb-4 overflow-hidden">
@@ -98,11 +72,7 @@ export default function CandidatePage() {
         />
       </div>
       <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1] m-2">
-        <TableDisplay
-          data={allCandidate}
-          transForm={TransFormCandidates}
-          renderMap={renderMap}
-        />
+        <Table dataSource={allCandidate} columns={columns} />
       </div>
     </div>
   );

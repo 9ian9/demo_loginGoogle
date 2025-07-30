@@ -1,21 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import HeaderContent, { BreakCrumbs } from '@/components/HeaderContent';
-import ItemCount from '../common/ItemCount';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
-import axios from 'axios';
 
 import TableDisplay from '@/components/table/TableDisplay';
-import { TransFormCandidates } from '@/components/candidates/TransformCandidates';
-import { InfoItem } from '@/components/table/InfoItem';
-import { StatusItem } from '@/components/table/StatusItem';
-import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
-import { SourceItem } from '@/components/table/SourceItem';
+// import { TransFormCandidates } from '@/components/candidates/FormatCandidatesData';
+import { InfoItem } from '@/components/table/ui/InfoItem';
+import { StatusItem } from '@/components/table/ui/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/helperComponents/ChangeDateDisplay';
+import { SourceItem } from '@/components/table/ui/SourceItem';
 
-export default function Candidates() {
+export default function Candidates({ id }) {
   const [filters, setFilters] = useState({});
   const [allCandidate, setAllCandidate] = useState([]);
   const [search, setSearch] = useState('');
@@ -25,15 +22,16 @@ export default function Candidates() {
       try {
         let response;
 
-        if (search && search.trim() !== '') {
+        if (search.trim() !== '') {
           response = await api.get('/candidate/search', {
             params: { searchRequest: search },
           });
+        } else if (Object.keys(filters).length > 0) {
+          response = await api.get('/candidate/filter', {
+            params: filters,
+          });
         } else {
-          // response = await api.get('/candidate/filter', {
-          //   params: filters,
-          // });
-          response = await axios.get('/api/candidate.json');
+          response = await api.get(`/positions/${id}/candidates`);
         }
 
         setAllCandidate(response.data.result || response.data || []);
@@ -44,7 +42,7 @@ export default function Candidates() {
     };
 
     fetchCandidates();
-  }, [filters, search]);
+  }, [id, filters, search]);
 
   const keySelect = [
     { key: 'status', label: 'Status' },
@@ -92,6 +90,7 @@ export default function Candidates() {
           data={allCandidate}
           transForm={TransFormCandidates}
           renderMap={renderMap}
+          sameId={true}
         />
       </div>
     </div>

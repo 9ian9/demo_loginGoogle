@@ -6,10 +6,10 @@ import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
 
 import TableDisplay from '@/components/table/TableDisplay';
-import { TransFormInterviews } from '@/components/interview/TransFormInterviews';
-import { InfoItem } from '@/components/table/InfoItem';
-import { StatusItem } from '@/components/table/StatusItem';
-import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
+// import { TransFormInterviews } from '@/components/interview/FormatInterviewsData';
+import { InfoItem } from '@/components/table/ui/InfoItem';
+import { StatusItem } from '@/components/table/ui/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/helperComponents/ChangeDateDisplay';
 
 export default function Completed() {
   const [filters, setFilters] = useState({});
@@ -70,7 +70,7 @@ export default function Completed() {
       key: 'scheduledTime',
       title: 'Schedule',
       render: (date) => ChangeDateDisplay(date, true),
-    }
+    },
   ];
 
   return (
@@ -82,7 +82,7 @@ export default function Completed() {
           dataTable={allInterview}
           keyValue={keySelect}
           filter={setFilters}
-        />                                                                                                       
+        />
       </div>
       <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
         <TableDisplay
@@ -94,4 +94,3 @@ export default function Completed() {
     </div>
   );
 }
-

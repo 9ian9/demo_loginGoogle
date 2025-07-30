@@ -1,10 +1,16 @@
 'use client';
 
-import { convertKeyToTitle } from './ConvertKeyToTitle';
+import { convertKeyToTitle } from './helperComponents/convertKeyToTitle';
 import { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
-function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
+function TableDisplay({
+  data = [],
+  transForm,
+  renderMap = [],
+  onClick,
+  sameId,
+}) {
   const [tableData, setTableData] = useState([]);
   const classMainText = 'text-base font-semibold';
   const classSubText = 'text-sm text-[#0091FF]';
@@ -12,7 +18,12 @@ function TableDisplay({ data = [], transForm, renderMap = [], onClick }) {
   useEffect(() => {
     const fetchData = () => {
       try {
-        const transformed = transForm(data, classMainText, classSubText);
+        const transformed = transForm(
+          data,
+          classMainText,
+          classSubText,
+          sameId,
+        );
         setTableData(transformed);
       } catch (err) {
         console.error('Error fetching mock data:', err);

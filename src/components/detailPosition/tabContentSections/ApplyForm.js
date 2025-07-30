@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import api from '@/lib/axiosInstance';
-import { InputFieldset } from '../form/InputFieldset';
+import { InputFieldset } from '../../form/InputFieldset';
 
 export default function ApplyForm({ jobId }) {
   const [questions, setQuestions] = useState([]);

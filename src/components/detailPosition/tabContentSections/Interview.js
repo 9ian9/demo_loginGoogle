@@ -6,12 +6,12 @@ import SearchInput from '@/components/filterBar/SearchInput';
 import api from '@/lib/axiosInstance';
 
 import TableDisplay from '@/components/table/TableDisplay';
-import { TransFormInterviews } from '@/components/interview/TransFormInterviews';
-import { InfoItem } from '@/components/table/InfoItem';
-import { StatusItem } from '@/components/table/StatusItem';
-import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
+// import { TransFormInterviews } from '@/components/interview/FormatInterviewsData';
+import { InfoItem } from '@/components/table/ui/InfoItem';
+import { StatusItem } from '@/components/table/ui/StatusItem';
+import { ChangeDateDisplay } from '@/components/table/helperComponents/ChangeDateDisplay';
 
-export default function Interview() {
+export default function Interview({ id }) {
   const [filters, setFilters] = useState({});
   const [allInterview, setAllInterview] = useState([]);
   const [search, setSearch] = useState('');
@@ -25,10 +25,12 @@ export default function Interview() {
           response = await api.get('/interview/search', {
             params: { searchRequest: search },
           });
-        } else {
+        } else if (Object.keys(filters).length > 0) {
           response = await api.get('/interview/filter', {
             params: filters,
           });
+        } else {
+          response = await api.get(`/positions/${id}/interviews`);
         }
 
         setAllInterview(response.data.result || []);
@@ -52,7 +54,7 @@ export default function Interview() {
     {
       key: 'information',
       title: 'Name',
-      width: 300,
+      width: 550,
       render: (data) => <InfoItem data={data} />,
     },
     {
@@ -70,7 +72,7 @@ export default function Interview() {
       key: 'scheduledTime',
       title: 'Schedule',
       render: (date) => ChangeDateDisplay(date, true),
-    }
+    },
   ];
 
   return (
@@ -82,13 +84,14 @@ export default function Interview() {
           dataTable={allInterview}
           keyValue={keySelect}
           filter={setFilters}
-        />                                                                                                       
+        />
       </div>
       <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
         <TableDisplay
           data={allInterview}
           transForm={TransFormInterviews}
           renderMap={renderMap}
+          sameId={true}
         />
       </div>
     </div>

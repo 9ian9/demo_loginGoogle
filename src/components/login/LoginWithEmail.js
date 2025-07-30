@@ -29,7 +29,7 @@ export default function LoginForm() {
     } catch (error) {
       const code = error?.response?.data?.code;
 
-      if (code === 1004 || code === 1005) {
+      if (code === 1004 || code === 1005 || code === 404) {
         setIsLoginFailed(true);
         setFeedback(
           'Email and password you entered is incorrect, Please try again.',
@@ -44,25 +44,19 @@ export default function LoginForm() {
   };
 
   const toggleClickSignIn = async (emailInput, passwordInput) => {
-    try {
-      const res = await api.post('auth/local', {
-        email: emailInput,
-        password: passwordInput,
-      });
+    const res = await api.post('auth/local', {
+      email: emailInput,
+      password: passwordInput,
+    });
 
-      const { accessToken, refreshToken } = res.data.result;
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+    const { accessToken, refreshToken } = res.data.result;
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
 
-      console.log('accessToken: ', accessToken);
-      console.log('refreshToken: ', refreshToken);
+    console.log('accessToken: ', accessToken);
+    console.log('refreshToken: ', refreshToken);
 
-      router.push('/dashboard');
-      return true;
-    } catch (err) {
-      console.log('Login error:', err);
-      return false;
-    }
+    router.push('/dashboard');
   };
 
   const toggleClickForgotPassword = () => {

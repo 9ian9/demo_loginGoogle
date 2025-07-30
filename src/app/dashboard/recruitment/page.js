@@ -9,18 +9,15 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axiosInstance';
 
-import TableDisplay from '@/components/table/TableDisplay';
-import { TransFormPositions } from '@/components/recruitment/TransFormPositions';
-import { InfoItem } from '@/components/table/InfoItem';
-import { StatusItem } from '@/components/table/StatusItem';
-import { ChangeDateDisplay } from '@/components/table/ChangeDateDisplay';
+import { FormatPositionData } from '@/components/recruitment/FormatPositionData';
+import { GetColumnsFromData } from '@/components/table/GetColumnsFromData';
+import Table from '@/components/table/Table';
 
 export default function Dashboard() {
   const router = useRouter();
   const [allPosition, setAllPositions] = useState([]);
   const [filters, setFilters] = useState({});
   const [search, setSearch] = useState('');
-  const [id, setId] = useState();
 
   const hanldCreateFormButton = () => {
     router.push('/dashboard/recruitment/position/newposition');
@@ -41,7 +38,8 @@ export default function Dashboard() {
           });
         }
 
-        setAllPositions(response.data.result || []);
+        const formatData = FormatPositionData(response.data.result);
+        setAllPositions(formatData);
         console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
         console.error('Error fetching candidates:', error);
@@ -51,22 +49,17 @@ export default function Dashboard() {
     fetchCandidates();
   }, [filters, search]);
 
+  const HanldeRowClick = (id) => {
+    router.push(`/dashboard/recruitment/position/${id}`);
+  };
+
   const keySelect = [
     { key: 'status', label: 'Status' },
     { key: 'level', label: 'Level' },
     { key: 'location', label: 'Locations' },
   ];
 
-  const renderMap = [
-    { key: 'position', width: 350, render: (data) => <InfoItem data={data} /> },
-    {
-      key: 'status',
-      width: 100,
-      render: (status) => <StatusItem status={status} />,
-    },
-    { key: 'deadline', render: (date) => ChangeDateDisplay(date) },
-    { key: 'numberOfApplicants', width: 200 },
-  ];
+  const columns = GetColumnsFromData(allPosition);
 
   return (
     <div className="flex flex-col gap-4 h-screen pt-4 pb-4">
@@ -109,11 +102,10 @@ export default function Dashboard() {
         />
       </div>
       <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-        <TableDisplay
-          data={allPosition}
-          transForm={TransFormPositions}
-          renderMap={renderMap}
-          onClick={(id) => router.push(`/dashboard/recruitment/position/${id}`)}
+        <Table
+          dataSource={allPosition}
+          columns={columns}
+          onRowClick={HanldeRowClick}
         />
       </div>
     </div>

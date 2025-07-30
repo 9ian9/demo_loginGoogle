@@ -1,13 +1,10 @@
 'use client';
 
-import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import api from '@/lib/axiosInstance';
-import { ChangeDateDisplay } from '../table/ChangeDateDisplay';
-import InfoPositionItem from './InfoPositionItem';
+import { ChangeDateDisplay } from '../../table/helperComponents/ChangeDateDisplay';
+import InfoPositionItem from '../ui/InfoPositionItem';
 
 export default function DetailInformation({ data }) {
-  const { id } = useParams();
   const [position, setPosition] = useState(null);
 
   useEffect(() => {

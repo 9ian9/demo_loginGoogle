@@ -1,4 +1,4 @@
-export function ChangeDateDisplay(isoDate, includeTime = false) {
+export function ChangeDateDisplay({isoDate, includeTime = false}) {
   const date = new Date(isoDate);
 
   if (isNaN(date)) return 'Invalid Date';
