@@ -1,7 +1,7 @@
 'use client';
 
 import { CONFIG } from '@/lib/config';
-import { iconLogin } from '../icon/iconLogin';
+import { iconLogin } from '../../../public/icon/iconLogin';
 
 export default function LoginWithGoogle() {
   function getAuthUrl() {

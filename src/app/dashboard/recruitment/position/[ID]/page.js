@@ -3,11 +3,11 @@
 import Tabs from '@/components/detailPosition/TabNavigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { EditButton } from '@/components/detailPosition/ui/EditButton';
-import { ChangeStatusButton } from '@/components/detailPosition/ui/ChangeStatusButton';
+import { EditButton } from '@/components/ui/EditButton';
+import { ChangeStatusButton } from '@/components/ui/ChangeStatusButton';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axiosInstance';
-import { iconDetailPosition } from '@/components/icon/iconDetailPosition';
+import { iconDetailPosition } from '../../../../../../public/icon/iconDetailPosition';
 
 export default function DetailPosition() {
   const router = useRouter();
@@ -31,17 +31,16 @@ export default function DetailPosition() {
     fetchData();
   }, [id]);
 
-  useEffect(() =>{
-    const updateStatus = async() => {
-      try{
-        const res = await api.patch(`/positions/${id}`,{ status: status});
-        
-      } catch (err){
+  useEffect(() => {
+    const updateStatus = async () => {
+      try {
+        const res = await api.patch(`/positions/${id}`, { status: status });
+      } catch (err) {
         console.error(`Can't update status: ${err}`);
       }
-    }
+    };
     updateStatus();
-  }, [status])
+  }, [status]);
 
   const hanldEditButton = () => {
     router.push(`/dashboard/recruitment/position/${id}/updateposition`);

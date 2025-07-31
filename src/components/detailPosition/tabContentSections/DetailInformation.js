@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ChangeDateDisplay } from '../../table/helperComponents/ChangeDateDisplay';
-import InfoPositionItem from '../ui/InfoPositionItem';
+import InfoPositionItem from '@/components/ui/InfoPositionItem';
 
 export default function DetailInformation({ data }) {
   const [position, setPosition] = useState(null);

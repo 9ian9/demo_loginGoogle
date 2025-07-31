@@ -2,7 +2,7 @@ export default function Table({ dataSource, columns, onRowClick }) {
   return (
     <div className="overflow-x-auto bg-base-100">
       <table className="table custom-table cursor-pointer text-base">
-        <thead>
+        <thead className="sticky top-0 z-10 bg-base-100">
           <tr>
             {columns.map((col) => (
               <th key={col.key}>{col.title}</th>

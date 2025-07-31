@@ -1,4 +1,4 @@
-import { iconFilter } from "../icon/iconFilter";
+import { iconFilter } from '../../../public/icon/iconFilter';
 
 function SearchInput({ onChange }) {
   return (

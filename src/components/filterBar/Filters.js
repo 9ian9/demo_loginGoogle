@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { iconFilter } from '../icon/iconFilter';
+import { iconFilter } from '../../../public/icon/iconFilter';
 
 export default function Filters({ dataTable, keyValue, filter }) {
   const [selectedFilters, setSelectedFilters] = useState({});

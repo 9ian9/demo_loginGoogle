@@ -1,10 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { iconDetailPosition } from '@/components/icon/iconDetailPosition';
+import { iconDetailPosition } from '../../../public/icon/iconDetailPosition';
 
 export function ChangeStatusButton({ onchange, statusData }) {
   const [status, setStatus] = useState(statusData);
- 
+
   useEffect(() => {
     setStatus(statusData);
   }, [statusData]);

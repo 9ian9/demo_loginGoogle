@@ -5,7 +5,7 @@ import Card from '@/components/recruitment/Card';
 import ItemCount from '@/components/common/ItemCount';
 import Filters from '@/components/filterBar/Filters';
 import SearchInput from '@/components/filterBar/SearchInput';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axiosInstance';
 
@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [allPosition, setAllPositions] = useState([]);
   const [filters, setFilters] = useState({});
   const [search, setSearch] = useState('');
+  const [isLoading, setLoading] = useState(true);
 
   const hanldCreateFormButton = () => {
     router.push('/dashboard/recruitment/position/newposition');
@@ -37,12 +38,13 @@ export default function Dashboard() {
             params: filters,
           });
         }
-
         const formatData = FormatPositionData(response.data.result);
         setAllPositions(formatData);
         console.log('Fetched Candidates:', response.data.result);
       } catch (error) {
         console.error('Error fetching candidates:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -102,11 +104,17 @@ export default function Dashboard() {
         />
       </div>
       <div className="flex-1 overflow-y-auto mx-[32px] rounded-lg border-[#E2E8F0] border-[1]">
-        <Table
-          dataSource={allPosition}
-          columns={columns}
-          onRowClick={HanldeRowClick}
-        />
+        {isLoading ? (
+          <div className="flex justify-center mt-15 text-base text-gray-500">
+            Loading data ...
+          </div>
+        ) : (
+          <Table
+            dataSource={allPosition}
+            columns={columns}
+            onRowClick={HanldeRowClick}
+          />
+        )}
       </div>
     </div>
   );
